@@ -1,19 +1,14 @@
-import  { useEffect } from "react";
-import {
-  Routes,
-  Route,
-  useNavigate,
-  useLocation,
-} from "react-router-dom";
+import { useEffect } from "react";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import LoginPage from "./pages/Login/Login";
-import DashBoard from "./pages/DashBoard/DashBoard";
 import PrivateRoute from "./Components/PrivateRoute";
-import { Signup } from "./pages/SignupPage/sigup";
 import Header from "./Components/Header";
-import Layout from "./Components/layout";
 import Project from "./pages/ProjectFile";
 import Users from "./pages/Users/Users";
 import PageNotFound from "./pages/404/PageNotFound";
+import DashBoard from "./components/Dashboard/Dashboard";
+import Layout from "./components/Layout";
+import { Signup } from "./pages/SignupPage/Signup";
 
 function App() {
   const navigate = useNavigate();
@@ -29,7 +24,7 @@ function App() {
       timeout = setTimeout(() => {
         localStorage.clear();
         navigate("/");
-      }, 60000); // 1 minute timeout
+      }, 60000); 
     };
 
     const handleMouseOrKeyboardActivity = () => {
@@ -59,19 +54,16 @@ function App() {
       case "ADMIN":
         return (
           <>
-            <Route path="/users" element={<Layout Child={<Users />} />} />
-            <Route path="*" element={<Layout Child={<PageNotFound />} />} />
+            <Route path="/users" element={<Layout Child={Users} />} />
+            <Route path="*" element={<Layout Child={PageNotFound} />} />
           </>
         );
       case "USER":
         return (
           <>
-            <Route
-              path="/dashboard"
-              element={<Layout Child={<DashBoard />} />}
-            />
-            <Route path="/project" element={<Layout Child={<Project />} />} />
-            <Route path="*" element={<Layout Child={<PageNotFound />} />} />
+            <Route path="/dashboard" element={<Layout Child={DashBoard} />} />
+            <Route path="/project" element={<Layout Child={Project} />} />
+            <Route path="*" element={<Layout Child={PageNotFound} />} />
           </>
         );
       default:
