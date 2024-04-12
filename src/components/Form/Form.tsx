@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm, Resolver } from "react-hook-form";
-import { Login } from "../../constants";
+import { LOGIN } from "../../constants";
 
 interface ArrayObject {
   id: number;
@@ -11,9 +11,11 @@ type ArrayType = ArrayObject[];
 
 interface Props {
   data: ArrayType;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onSubmit: (data: any) => void;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const resolver: Resolver<any> = async (values) => {
   const errors: { [key: string]: { type: string; message: string } } = {};
   Object.entries(values).forEach(([key, value]) => {
@@ -35,6 +37,7 @@ const Form: React.FC<Props> = ({ data, onSubmit }) => {
     register,
     handleSubmit,
     formState: { errors },
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } = useForm<any>({
     resolver: resolver,
   });
@@ -66,7 +69,7 @@ const Form: React.FC<Props> = ({ data, onSubmit }) => {
           </div>
         ))}
       <button type="submit" className="btn btn-primary mt-2">
-        {Login?.SUBMIT}
+        {LOGIN?.SUBMIT}
       </button>
     </form>
   );

@@ -1,19 +1,17 @@
 import { useEffect } from "react";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import LoginPage from "./pages/Login/Login";
-import PrivateRoute from "./Components/PrivateRoute";
-import Header from "./Components/Header";
-import Project from "./pages/ProjectFile";
-import Users from "./pages/Users/Users";
 import PageNotFound from "./pages/404/PageNotFound";
 import DashBoard from "./components/Dashboard/Dashboard";
 import Layout from "./components/Layout";
 import { Signup } from "./pages/SignupPage/Signup";
+import PrivateRoute from "./components/PrivateRoute";
+import Header from "./components/Header/Header";
 
 function App() {
   const navigate = useNavigate();
   const location = useLocation();
-  let timeout: NodeJS.Timeout | undefined;
+  let timeout: number | undefined;
 
   useEffect(() => {
     const resetTimer = () => {
@@ -24,7 +22,7 @@ function App() {
       timeout = setTimeout(() => {
         localStorage.clear();
         navigate("/");
-      }, 60000); 
+      }, 60000);
     };
 
     const handleMouseOrKeyboardActivity = () => {
@@ -54,7 +52,7 @@ function App() {
       case "ADMIN":
         return (
           <>
-            <Route path="/users" element={<Layout Child={Users} />} />
+            {/* <Route path="/users" element={<Layout Child={Users} />} /> */}
             <Route path="*" element={<Layout Child={PageNotFound} />} />
           </>
         );
@@ -62,7 +60,7 @@ function App() {
         return (
           <>
             <Route path="/dashboard" element={<Layout Child={DashBoard} />} />
-            <Route path="/project" element={<Layout Child={Project} />} />
+            {/* <Route path="/project" element={<Layout Child={Project} />} /> */}
             <Route path="*" element={<Layout Child={PageNotFound} />} />
           </>
         );

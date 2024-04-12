@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../Header";
+import Header from "../Header/Header";
 
 interface ILayout {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

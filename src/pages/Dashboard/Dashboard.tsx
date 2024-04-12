@@ -1,11 +1,10 @@
-import React, { useState } from "react";
-import Compiler from "../Compiler";
+import { useState } from "react";
+import Compiler from "../Compiler/Compiler";
 
 const DashBoard = () => {
-  const [language, setLanguage] = useState<string>('javascript');
-  const [code, setCode] = useState<string>('');
-  const [theme, setTheme] = useState<string>('light');
-
+  const [language, setLanguage] = useState<string>("javascript");
+  const [code, setCode] = useState<string>("");
+  const [theme, setTheme] = useState<string>("light");
   const handleLanguageChange = (selectedLanguage: string) => {
     setLanguage(selectedLanguage);
   };
@@ -33,4 +32,3 @@ const DashBoard = () => {
 };
 
 export default DashBoard;
-
