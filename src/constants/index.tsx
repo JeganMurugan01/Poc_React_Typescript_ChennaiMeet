@@ -3,7 +3,10 @@ export const LOGIN = {
   SUBMIT: "Submit",
   LOGINPAGEHEADING: "Login",
 };
-
+export const USERS = {
+  ADDUSER: "Add User",
+  ACTIVEUSERS: "Active Users List:",
+};
 export const COMPILER = {
   HEADING: "Online Compiler",
 };

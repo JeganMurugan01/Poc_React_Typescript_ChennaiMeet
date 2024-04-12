@@ -16,11 +16,13 @@ const LoginPage = () => {
     if (loginData.isSuccess) {
       localStorage.setItem("ACCESSTOKEN", loginData?.data?.token);
       localStorage.setItem("USERTYPE", loginData?.data?.userType);
-
-      console.log("navigate");
     }
     if (localStorage.getItem("ACCESSTOKEN")) {
-      nav("/dashboard");
+      nav(
+        localStorage.getItem("USERTYPE") === "ADMIN"
+          ? "/admin/users"
+          : "/dashboard"
+      );
     }
   }, [loginData]);
 

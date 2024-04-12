@@ -8,6 +8,7 @@ import { Signup } from "./pages/SignupPage/Signup";
 import PrivateRoute from "./components/PrivateRoute";
 import Header from "./components/Header/Header";
 import CommingSoon from "./pages/CommingSoon";
+import Users from "./pages/users/Users";
 
 function App() {
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ function App() {
       timeout = setTimeout(() => {
         localStorage.clear();
         navigate("/");
-      }, 60000);
+      }, 300000);
     };
 
     const handleMouseOrKeyboardActivity = () => {
@@ -58,11 +59,11 @@ function App() {
               path="/admin/dashboard"
               element={<Layout Child={CommingSoon} />}
             />
-               <Route
+            <Route
               path="/admin/users"
-              element={<Layout Child={CommingSoon} />}
+              element={<Layout Child={Users} />}
             />
-                        <Route path="/dashboard" element={<Layout Child={DashBoard} />} />
+            <Route path="/dashboard" element={<Layout Child={DashBoard} />} />
 
             <Route path="*" element={<Layout Child={PageNotFound} />} />
           </>
