@@ -10,13 +10,13 @@ export const COMPILER = {
 
 export const Language = [
   {
-    label: "JavaScript",
+    label: "javascript",
   },
   {
     label: "C#",
   },
   {
-    label: "Java",
+    label: "java",
   },
 ];
 
@@ -45,5 +45,49 @@ export const Logindata: LoginField[] = [
     id: 2,
     label: "Password",
     apiKey: "password",
+  },
+];
+
+interface AdminHeaderLabel {
+  label: string;
+  pathName: string;
+}
+
+export const AdminHeaderLable: AdminHeaderLabel[] = [
+  {
+    label: "Dashboard",
+    pathName: "/admin/dashboad",
+  },
+  {
+    label: "Users",
+    pathName: "/admin/users",
+  },
+  {
+    label: "Files",
+    pathName: "/admin/files",
+  },
+  {
+    label: "Config",
+    pathName: "/admin/config",
+  },
+];
+
+interface UserHeaderLabel {
+  label: string;
+  pathName: string;
+}
+
+export const UserHeaderLable: UserHeaderLabel[] = [
+  {
+    label: "Dashboard",
+    pathName: "/user/dashboad",
+  },
+  {
+    label: "Compiler",
+    pathName: "/user/compiler",
+  },
+  {
+    label: "Compiler",
+    pathName: "/user/compiler",
   },
 ];

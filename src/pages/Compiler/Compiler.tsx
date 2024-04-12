@@ -31,55 +31,58 @@ const Compiler: React.FC<ICompiler> = ({
     onSubmit();
   };
 
+  const editorHeight = `calc(80vh - 90px)`;
+
   return (
-    <div className="compiler-container">
-      <div className="question-section">
-        <h3>Question:</h3>
-        <p>Enter your question here:</p>
-      </div>
-      <div className="editor-section">
-        <div className="controls">
-          <select
-            value={language}
-            onChange={handleLanguageChange}
-            className="form-select"
-          >
-            {Language?.map((value, i) => (
-              <option value={value?.label} key={i}>
-                {value?.label}
-              </option>
-            ))}
-          </select>
-          <select
-            value={theme}
-            onChange={handleThemeChange}
-            className="form-select"
-          >
-            {themColor &&
-              themColor?.map((value, i) => (
-                <option value={value?.them} key={i}>
-                  {value?.them}
+    <div>
+      <div className="compiler-container">
+        <div className="question-section">
+          <h2>Question:</h2>
+          <p>Enter your question here:</p>
+        </div>
+        <div className="editor-section">
+          <div className="controls">
+            <select
+              value={language}
+              onChange={handleLanguageChange}
+              className="form-select"
+            >
+              {Language?.map((value, i) => (
+                <option value={value?.label} key={i}>
+                  {value?.label}
                 </option>
               ))}
-          </select>
+            </select>
+            <select
+              value={theme}
+              onChange={handleThemeChange}
+              className="form-select"
+            >
+              {themColor &&
+                themColor?.map((value, i) => (
+                  <option value={value?.them} key={i}>
+                    {value?.them}
+                  </option>
+                ))}
+            </select>
+          </div>
+          <Editor
+            height={editorHeight}
+            width="100%"
+            language={language || "javascript"}
+            value={value}
+            theme={theme}
+            defaultValue="// Enter your code here"
+            className="editor"
+          />
+          <div className="d-flex flex-row-reverse mt-2 ">
+            <button onClick={handleSubmit} className="btn btn-primary">
+              {LOGIN?.RUN}
+            </button>
+          </div>
         </div>
-        <Editor
-          height="50vh"
-          width="100%"
-          language={language || "javascript"}
-          value={value}
-          theme={theme}
-          defaultValue="// Enter your code here"
-          className="editor"
-        />
-      </div>
-      <div className="footer">
-        <button onClick={handleSubmit} className="btn btn-primary">
-          {LOGIN?.RUN}
-        </button>
       </div>
     </div>
   );
 };
-
 export default Compiler;

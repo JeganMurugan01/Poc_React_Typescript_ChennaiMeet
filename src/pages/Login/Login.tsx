@@ -15,6 +15,8 @@ const LoginPage = () => {
   useEffect(() => {
     if (loginData.isSuccess) {
       localStorage.setItem("ACCESSTOKEN", loginData?.data?.token);
+      localStorage.setItem("USERTYPE", loginData?.data?.userType);
+
       console.log("navigate");
     }
     if (localStorage.getItem("ACCESSTOKEN")) {

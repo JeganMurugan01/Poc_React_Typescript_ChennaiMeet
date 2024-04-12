@@ -7,6 +7,7 @@ import Layout from "./components/Layout";
 import { Signup } from "./pages/SignupPage/Signup";
 import PrivateRoute from "./components/PrivateRoute";
 import Header from "./components/Header/Header";
+import CommingSoon from "./pages/CommingSoon";
 
 function App() {
   const navigate = useNavigate();
@@ -52,7 +53,17 @@ function App() {
       case "ADMIN":
         return (
           <>
-            {/* <Route path="/users" element={<Layout Child={Users} />} /> */}
+            {/* <Route path="/admin/users" element={<Layout Child={Users} />} /> */}
+            <Route
+              path="/admin/dashboard"
+              element={<Layout Child={CommingSoon} />}
+            />
+               <Route
+              path="/admin/users"
+              element={<Layout Child={CommingSoon} />}
+            />
+                        <Route path="/dashboard" element={<Layout Child={DashBoard} />} />
+
             <Route path="*" element={<Layout Child={PageNotFound} />} />
           </>
         );

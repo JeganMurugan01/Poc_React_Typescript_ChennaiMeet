@@ -37,7 +37,7 @@ const Form: React.FC<Props> = ({ data, onSubmit }) => {
     register,
     handleSubmit,
     formState: { errors },
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } = useForm<any>({
     resolver: resolver,
   });
@@ -61,9 +61,7 @@ const Form: React.FC<Props> = ({ data, onSubmit }) => {
                 id={`${value.id}`}
               />
               {errors[value.apiKey]?.message && (
-                <p className="text-danger">
-                  {String(errors[value.apiKey]?.message)}
-                </p>
+                <p className="text-danger">{value?.label} is required</p>
               )}
             </div>
           </div>
