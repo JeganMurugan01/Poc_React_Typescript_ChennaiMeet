@@ -1,0 +1,27 @@
+.compiler-container {
+    width: 100%;
+    padding: 20px;
+  }
+  
+  .question-container {
+    text-align: center;
+  }
+  
+  .editor-container {
+    margin-top: 20px;
+  }
+  
+  .editor-container select {
+    width: 100%;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .row {
+      flex-direction: column;
+    }
+  
+    .col-sm-6 {
+      width: 100%;
+    }
+  }
+  
