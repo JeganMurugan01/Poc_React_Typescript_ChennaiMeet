@@ -23,9 +23,6 @@ export const transformData = (data: RowDataItem[]): TransformedData => {
     columnKeys.forEach((key) => {
       rowDataItem[key] = item[key];
     });
-    if (item["action"] === "delete") {
-      delete rowDataItem["action"];
-    }
     return rowDataItem;
   });
 

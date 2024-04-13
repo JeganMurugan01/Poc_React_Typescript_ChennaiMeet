@@ -5,8 +5,7 @@ import { GridReadyEvent } from "ag-grid-community";
 import Table from "../../components/Table/Table";
 import { useGetUsersQuery } from "../../redux/services/userServices/userService";
 import { USERS } from "../../constants";
-import { FaTrash } from "react-icons/fa6";
-
+// import { FaTrash } from "react-icons/fa6";
 
 const Users = () => {
   const [tableData, setTableData] = useState<any>();
@@ -15,13 +14,13 @@ const Users = () => {
   useEffect(() => {
     if (isSuccess && data) {
       const orgData = (data as any).data;
-      console.log(orgData, "orgData");
-
-      const modifiedData = orgData.map((item: any) => ({
-        ...item,
-        action: <FaTrash/>,
-      }));
-      setTableData(transformData(modifiedData));
+      console.log(orgData, "orgData"); 
+      // for future use 
+      // const modifiedData = orgData.map((item: any) => ({
+      //   ...item,
+      //   action: `${(<i className="material-icons">delete</i>)}`,
+      // }));
+      setTableData(transformData(orgData));
     }
   }, [data, isSuccess]);
   console.log(tableData, "tableData");
@@ -37,8 +36,6 @@ const Users = () => {
           <div className="ms-5 col-5" style={{ fontWeight: "bold" }}>
             {USERS?.ACTIVEUSERS}
           </div>
-          <div className="col-3"></div>
-          <button className="btn btn-primary col-1">{USERS?.ADDUSER}</button>
           <div className="col-3"></div>
         </div>
         <div className=" row mt-3">

@@ -1,6 +1,14 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-export const Modal = () => {
+interface Ilayout {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  Child: React.ComponentType<any>;
+  Title: string;
+  SubmitBtn: string;
+  ModalBtn: string;
+}
+
+export const Modal = ({ Child, Title, SubmitBtn, ModalBtn }: Ilayout) => {
   const [showModal, setShowModal] = useState(false);
 
   const handleModalToggle = () => {
@@ -9,15 +17,19 @@ export const Modal = () => {
 
   return (
     <>
-      <button type="button" className="btn btn-primary" onClick={handleModalToggle}>
-        Open Modal
+      <button
+        type="button"
+        className="btn btn-primary"
+        onClick={handleModalToggle}
+      >
+        {ModalBtn}
       </button>
       {showModal && (
-        <div className="modal"  role="dialog" style={{ display: 'block' }}>
+        <div className="modal" role="dialog" style={{ display: "block" }}>
           <div className="modal-dialog" role="document">
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title">Modal title</h5>
+                <h5 className="modal-title">{Title}</h5>
                 <button
                   type="button"
                   className="btn-close"
@@ -26,7 +38,7 @@ export const Modal = () => {
                 ></button>
               </div>
               <div className="modal-body">
-                <p>Modal body text goes here.</p>
+                <Child />
               </div>
               <div className="modal-footer">
                 <button
@@ -37,7 +49,7 @@ export const Modal = () => {
                   Close
                 </button>
                 <button type="button" className="btn btn-primary">
-                  Save changes
+                  {SubmitBtn}
                 </button>
               </div>
             </div>

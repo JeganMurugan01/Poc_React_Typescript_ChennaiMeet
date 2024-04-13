@@ -1,13 +1,14 @@
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-quartz.css";
-import { useCallback, useMemo } from "react";
+import { useMemo } from "react";
 import {
   ColDef,
   SizeColumnsToContentStrategy,
   SizeColumnsToFitGridStrategy,
   SizeColumnsToFitProvidedWidthStrategy,
 } from "ag-grid-community";
+import "ag-grid-charts-enterprise";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Table = ({ rowData, colDefs }: any) => {
@@ -28,14 +29,18 @@ const Table = ({ rowData, colDefs }: any) => {
       filter: true,
     };
   }, []);
+  const getContextMenuItems = () => {
+    return [
+      {
+        name: "Delete",
+        action: function (e: any) {
+          console.log(e?.node?.data?.id, "value ");
+        },
+        icon: `<i class="fa fa-trash"></i>`,
+      },
+    ];
+  };
 
-  const popupParent = useMemo<HTMLElement | null>(() => {
-    return document.querySelector("body");
-  }, []);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const onGridReady = useCallback((params: any) => {
-    console.log(params, "params");
-  }, []);
   return (
     <div style={containerStyle}>
       <div style={gridStyle} className={"ag-theme-quartz-dark"}>
@@ -45,10 +50,7 @@ const Table = ({ rowData, colDefs }: any) => {
           domLayout={"autoHeight"}
           autoSizeStrategy={autoSizeStrategy}
           allowContextMenuWithControlKey={true}
-          suppressContextMenu={false}
-          enableRangeSelection={true}
-          popupParent={popupParent}
-          onGridReady={onGridReady}
+          getContextMenuItems={getContextMenuItems}
           defaultColDef={defaultColDef}
         />
       </div>
