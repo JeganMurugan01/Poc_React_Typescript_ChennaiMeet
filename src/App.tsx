@@ -9,6 +9,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import Header from "./components/Header/Header";
 import CommingSoon from "./pages/CommingSoon";
 import Users from "./pages/users/Users";
+import Files from "./pages/Files/Files";
 
 function App() {
   const navigate = useNavigate();
@@ -59,13 +60,11 @@ function App() {
               path="/admin/dashboard"
               element={<Layout Child={CommingSoon} />}
             />
-            <Route
-              path="/admin/users"
-              element={<Layout Child={Users} />}
-            />
+            <Route path="/admin/users" element={<Layout Child={Users} />} />
             <Route path="/dashboard" element={<Layout Child={DashBoard} />} />
 
             <Route path="*" element={<Layout Child={PageNotFound} />} />
+            <Route path="/admin/files" element={<Layout Child={Files} />} />
           </>
         );
       case "USER":

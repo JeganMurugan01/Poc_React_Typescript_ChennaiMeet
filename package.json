@@ -13,6 +13,7 @@
     "@fortawesome/fontawesome-free": "^6.5.2",
     "@monaco-editor/react": "^4.6.0",
     "@reduxjs/toolkit": "^2.2.3",
+    "ag-grid-charts-enterprise": "^31.2.1",
     "ag-grid-community": "^31.2.1",
     "ag-grid-react": "^31.2.1",
     "bootstrap": "5",

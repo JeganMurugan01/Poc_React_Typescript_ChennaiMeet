@@ -1050,6 +1050,27 @@ acorn@^8.9.0:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.11.3.tgz#71e0b14e13a4ec160724b38fb7b0f233b1b81d7a"
   integrity sha512-Y9rRfJG5jcKOE0CLisYbojUjIrIEE7AGMzA/Sm4BslANhbS+cDMpgBdcPT91oJ7OuJ9hYJBx59RjbhxVnrF8Xg==
 
+ag-charts-community@9.2.0:
+  version "9.2.0"
+  resolved "https://registry.yarnpkg.com/ag-charts-community/-/ag-charts-community-9.2.0.tgz#7c4a1af655f4e76b0793e6cc690b4713bd68513c"
+  integrity sha512-dS5nPExh81owIIdyHli0TvWvSyhmZy2RncM/s3/KXpjAf3eiVN2fxfT2z+QxqsLyoms+fernp5cAuSju0peYXw==
+
+ag-charts-enterprise@9.2.0:
+  version "9.2.0"
+  resolved "https://registry.yarnpkg.com/ag-charts-enterprise/-/ag-charts-enterprise-9.2.0.tgz#80d6920403162e4fb9d1aa71ca3aeffcb294c521"
+  integrity sha512-/7mRmGhDuvDL9mNIRInBeznN7849X5qDWceLYl1ZusekPAiDBKCCSJR+qDtjHIDXryzhNd3UGxXkm548njVgHg==
+  dependencies:
+    ag-charts-community "9.2.0"
+
+ag-grid-charts-enterprise@^31.2.1:
+  version "31.2.1"
+  resolved "https://registry.yarnpkg.com/ag-grid-charts-enterprise/-/ag-grid-charts-enterprise-31.2.1.tgz#4774c33a3ee21dd5c0bbc8f7e1bea9271f23bed0"
+  integrity sha512-jlfjvWSY+OnYyEYh3S3Qi1TGfOWVVqW1WZf2+VG39g4cgxwkSJ8dPyerFz6quF15+Xq4UlBSBg9k7VFB4iCf5A==
+  dependencies:
+    ag-charts-community "9.2.0"
+    ag-charts-enterprise "9.2.0"
+    ag-grid-community "31.2.1"
+
 ag-grid-community@31.2.1, ag-grid-community@^31.2.1:
   version "31.2.1"
   resolved "https://registry.yarnpkg.com/ag-grid-community/-/ag-grid-community-31.2.1.tgz#6031c91baa5caebccfa58a5131efc13339643e50"
