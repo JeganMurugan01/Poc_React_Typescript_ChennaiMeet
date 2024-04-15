@@ -33,6 +33,7 @@ const Table = ({ rowData, colDefs }: any) => {
     return [
       {
         name: "Delete",
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         action: function (e: any) {
           console.log(e?.node?.data?.id, "value ");
         },

@@ -1,11 +1,31 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useEffect, useState } from "react";
+import Table from "../../components/Table/Table";
+import { useGetAllFilesQuery } from "../../redux/services/filerServices/fileService";
+import { transformData } from "../../utils/helper";
+
 const Files = () => {
+  const [tableData, setTableData] = useState<any>();
+  const { data, isSuccess } = useGetAllFilesQuery({ page: 1, limit: 5 });
+  console.log(data, "data");
+  useEffect(() => {
+    if (isSuccess && data) {
+      const orgData = (data as any).data;
+      setTableData(transformData(orgData));
+    }
+  }, [data, isSuccess]);
+
   return (
     <>
-      <h3 className="d-flex justify-content-center mt-3">List of qustions</h3>
+      <h4 className="d-flex justify-content-left mt-3 ms-3">
+        List of qustions
+      </h4>
       <div className="row">
-        <div className="col-3"></div>
-        <div className="col-6">tabel</div>
-        <div className="col-3"></div>
+        <div className="col-md-12 col-lg-12 col-sm-12 ">
+          <div className="ms-2 me-2">
+            <Table rowData={tableData?.rowData} colDefs={tableData?.colDefs} />
+          </div>
+        </div>
       </div>
     </>
   );

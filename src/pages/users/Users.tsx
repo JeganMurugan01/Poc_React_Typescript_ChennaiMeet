@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { transformData } from "../../utils/helper";
-import { GridReadyEvent } from "ag-grid-community";
 import Table from "../../components/Table/Table";
 import { useGetUsersQuery } from "../../redux/services/userServices/userService";
 import { USERS } from "../../constants";
@@ -14,8 +13,8 @@ const Users = () => {
   useEffect(() => {
     if (isSuccess && data) {
       const orgData = (data as any).data;
-      console.log(orgData, "orgData"); 
-      // for future use 
+      console.log(orgData, "orgData");
+      // for future use
       // const modifiedData = orgData.map((item: any) => ({
       //   ...item,
       //   action: `${(<i className="material-icons">delete</i>)}`,
@@ -25,28 +24,20 @@ const Users = () => {
   }, [data, isSuccess]);
   console.log(tableData, "tableData");
 
-  const onCellClicked = useCallback((e: GridReadyEvent) => {
-    console.log(e, "Cell was clicked");
-  }, []);
+  // const onCellClicked = useCallback((e: GridReadyEvent) => {
+  //   console.log(e, "Cell was clicked");
+  // }, []);
 
   return (
     <>
-      <div className="mt-5">
-        <div className="row" style={{ marginRight: "0px" }}>
-          <div className="ms-5 col-5" style={{ fontWeight: "bold" }}>
-            {USERS?.ACTIVEUSERS}
+      <h4 className="d-flex justify-content-left mt-3 ms-3">
+        {USERS?.ACTIVEUSERS}
+      </h4>
+      <div className="row">
+        <div className="col-md-12 col-lg-12 col-sm-12 ">
+          <div className="ms-2 me-2">
+            <Table rowData={tableData?.rowData} colDefs={tableData?.colDefs} />
           </div>
-          <div className="col-3"></div>
-        </div>
-        <div className=" row mt-3">
-          <div className="col-9 ms-5">
-            <Table
-              rowData={tableData?.rowData}
-              colDefs={tableData?.colDefs}
-              onCellClicked={onCellClicked}
-            />
-          </div>
-          <div className="col-3"></div>
         </div>
       </div>
     </>

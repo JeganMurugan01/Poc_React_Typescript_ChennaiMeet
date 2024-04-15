@@ -6,7 +6,6 @@ import DashBoard from "./components/Dashboard/Dashboard";
 import Layout from "./components/Layout";
 import { Signup } from "./pages/SignupPage/Signup";
 import PrivateRoute from "./components/PrivateRoute";
-import Header from "./components/Header/Header";
 import CommingSoon from "./pages/CommingSoon";
 import Users from "./pages/users/Users";
 import Files from "./pages/Files/Files";
@@ -55,23 +54,17 @@ function App() {
       case "ADMIN":
         return (
           <>
-            {/* <Route path="/admin/users" element={<Layout Child={Users} />} /> */}
-            <Route
-              path="/admin/dashboard"
-              element={<Layout Child={CommingSoon} />}
-            />
+            <Route path="/admin/dashboad" element={<CommingSoon />} />
             <Route path="/admin/users" element={<Layout Child={Users} />} />
-            <Route path="/dashboard" element={<Layout Child={DashBoard} />} />
-
-            <Route path="*" element={<Layout Child={PageNotFound} />} />
             <Route path="/admin/files" element={<Layout Child={Files} />} />
+            <Route path="/admin/config" element={<CommingSoon />} />
+            <Route path="*" element={<Layout Child={PageNotFound} />} />
           </>
         );
       case "USER":
         return (
           <>
             <Route path="/dashboard" element={<Layout Child={DashBoard} />} />
-            {/* <Route path="/project" element={<Layout Child={Project} />} /> */}
             <Route path="*" element={<Layout Child={PageNotFound} />} />
           </>
         );
@@ -84,10 +77,7 @@ function App() {
     <Routes>
       <Route path="/" element={<LoginPage />} />
       <Route path="/signup" element={<Signup />} />
-      <Route element={<PrivateRoute />}>
-        <Route element={<Header />} />
-        {renderRoutes()}
-      </Route>
+      <Route element={<PrivateRoute />}>{renderRoutes()}</Route>
     </Routes>
   );
 }
