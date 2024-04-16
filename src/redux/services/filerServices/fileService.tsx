@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { BASEURL } from "../../../constants";
 
 export const fileServiceApi = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:3000/api/v1/",
+    baseUrl: `${BASEURL}/api/v1/`,
     prepareHeaders: (headers) => {
       const token = localStorage.getItem("ACCESSTOKEN");
       if (token) {

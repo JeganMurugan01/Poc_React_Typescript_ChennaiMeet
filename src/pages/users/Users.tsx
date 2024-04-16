@@ -13,13 +13,13 @@ const Users = () => {
   useEffect(() => {
     if (isSuccess && data) {
       const orgData = (data as any).data;
-      console.log(orgData, "orgData");
-      // for future use
-      // const modifiedData = orgData.map((item: any) => ({
-      //   ...item,
-      //   action: `${(<i className="material-icons">delete</i>)}`,
-      // }));
-      setTableData(transformData(orgData));
+      console.log(orgData, "orgData"); 
+      // for future use 
+      const modifiedData = orgData.map((item: any) => ({
+        ...item,
+        action:"",
+      }));      
+      setTableData(transformData(modifiedData));
     }
   }, [data, isSuccess]);
   console.log(tableData, "tableData");

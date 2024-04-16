@@ -1,3 +1,5 @@
+import { FaTrash } from "react-icons/fa";
+
 interface RowDataItem {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
@@ -29,6 +31,7 @@ export const transformData = (data: RowDataItem[]): TransformedData => {
   const transformedColDefs = columnKeys.map((key) => ({
     headerName: key,
     field: key,
+    ...(key === "action" && { cellRenderer: () => <FaTrash className="cursor-pointer"/> })
   }));
 
   return { rowData: transformedRowData, colDefs: transformedColDefs };
