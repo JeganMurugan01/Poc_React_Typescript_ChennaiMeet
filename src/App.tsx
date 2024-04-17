@@ -5,11 +5,11 @@ import PageNotFound from "./pages/404/PageNotFound";
 import Layout from "./components/Layout";
 import { Signup } from "./pages/SignupPage/Signup";
 import PrivateRoute from "./components/PrivateRoute";
-import CommingSoon from "./pages/CommingSoon";
 import Users from "./pages/users/Users";
 import Files from "./pages/Files/Files";
 import { AdminDashBoard } from "./pages/Admin/DashBoard/DashBoard";
 import DashBoard from "./pages/Dashboard/Dashboard";
+import Permission from "./pages/Permission/Permission";
 
 function App() {
   const navigate = useNavigate();
@@ -61,7 +61,10 @@ function App() {
             />
             <Route path="/admin/users" element={<Layout Child={Users} />} />
             <Route path="/admin/files" element={<Layout Child={Files} />} />
-            <Route path="/admin/Permission" element={<CommingSoon />} />
+            <Route
+              path="/admin/Permission"
+              element={<Layout Child={Permission} />}
+            />
             <Route path="*" element={<Layout Child={PageNotFound} />} />
           </>
         );

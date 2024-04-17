@@ -29,18 +29,6 @@ const Table = ({ rowData, colDefs }: any) => {
       filter: true,
     };
   }, []);
-  const getContextMenuItems = () => {
-    return [
-      {
-        name: "Delete",
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        action: function (e: any) {
-          console.log(e?.node?.data?.id, "value ");
-        },
-        icon: `<i class="fa fa-trash"></i>`,
-      },
-    ];
-  };
 
   return (
     <div style={containerStyle}>
@@ -51,7 +39,6 @@ const Table = ({ rowData, colDefs }: any) => {
           domLayout={"autoHeight"}
           autoSizeStrategy={autoSizeStrategy}
           allowContextMenuWithControlKey={true}
-          getContextMenuItems={getContextMenuItems}
           defaultColDef={defaultColDef}
         />
       </div>

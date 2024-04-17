@@ -95,3 +95,7 @@ export const AdminDashboardLable = {
   WELCOME: "Welcome back",
   LOGOUT: "Logout",
 };
+
+export const PermissionLabel = {
+  USERPERMISSION: "User Permissions",
+};

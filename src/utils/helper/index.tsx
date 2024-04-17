@@ -1,4 +1,4 @@
-import { FaTrash } from "react-icons/fa";
+import { FaEdit, FaTrash } from "react-icons/fa";
 
 interface RowDataItem {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -28,11 +28,19 @@ export const transformData = (data: RowDataItem[]): TransformedData => {
     return rowDataItem;
   });
 
-  const transformedColDefs = columnKeys.map((key) => ({
-    headerName: key,
-    field: key,
-    ...(key === "action" && { cellRenderer: () => <FaTrash className="cursor-pointer"/> })
-  }));
+  const transformedColDefs = columnKeys.map((key) => {
+    return {
+      headerName: key,
+      field: key,
+      ...(key === "action"
+        ? {
+            cellRenderer: () => <FaTrash style={{ cursor: "pointer" }} />,
+          }
+        : key === "edit" && {
+            cellRenderer: () => <FaEdit size={18} style={{ cursor: "pointer" }} />,
+          }),
+    };
+  });
 
   return { rowData: transformedRowData, colDefs: transformedColDefs };
 };
