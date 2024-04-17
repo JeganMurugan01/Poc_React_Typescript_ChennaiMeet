@@ -4,29 +4,23 @@ import { transformData } from "../../utils/helper";
 import Table from "../../components/Table/Table";
 import { useGetUsersQuery } from "../../redux/services/userServices/userService";
 import { USERS } from "../../constants";
-// import { FaTrash } from "react-icons/fa6";
 
 const Users = () => {
   const [tableData, setTableData] = useState<any>();
   const { data, isSuccess } = useGetUsersQuery();
-  console.log(data, "data");
+
   useEffect(() => {
     if (isSuccess && data) {
       const orgData = (data as any).data;
-      console.log(orgData, "orgData"); 
-      // for future use 
+      console.log(orgData, "orgData");
       const modifiedData = orgData.map((item: any) => ({
         ...item,
-        action:"",
-      }));      
+        action: "",
+      }));
       setTableData(transformData(modifiedData));
     }
   }, [data, isSuccess]);
   console.log(tableData, "tableData");
-
-  // const onCellClicked = useCallback((e: GridReadyEvent) => {
-  //   console.log(e, "Cell was clicked");
-  // }, []);
 
   return (
     <>

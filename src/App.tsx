@@ -2,18 +2,19 @@ import { useEffect } from "react";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import LoginPage from "./pages/Login/Login";
 import PageNotFound from "./pages/404/PageNotFound";
-import DashBoard from "./components/Dashboard/Dashboard";
 import Layout from "./components/Layout";
 import { Signup } from "./pages/SignupPage/Signup";
 import PrivateRoute from "./components/PrivateRoute";
 import CommingSoon from "./pages/CommingSoon";
 import Users from "./pages/users/Users";
 import Files from "./pages/Files/Files";
+import { AdminDashBoard } from "./pages/Admin/DashBoard/DashBoard";
+import DashBoard from "./pages/Dashboard/Dashboard";
 
 function App() {
   const navigate = useNavigate();
   const location = useLocation();
-  let timeout: number | undefined;
+  let timeout: NodeJS.Timeout | undefined;
 
   useEffect(() => {
     const resetTimer = () => {
@@ -54,7 +55,10 @@ function App() {
       case "ADMIN":
         return (
           <>
-            <Route path="/admin/dashboad" element={<CommingSoon />} />
+            <Route
+              path="/admin/dashboard"
+              element={<Layout Child={AdminDashBoard} />}
+            />
             <Route path="/admin/users" element={<Layout Child={Users} />} />
             <Route path="/admin/files" element={<Layout Child={Files} />} />
             <Route path="/admin/config" element={<CommingSoon />} />

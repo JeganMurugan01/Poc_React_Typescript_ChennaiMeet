@@ -10,7 +10,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <Provider store={store}>
-    <BrowserRouter> {/* Move BrowserRouter here */}
+    <BrowserRouter>
       <App />
     </BrowserRouter>
   </Provider>

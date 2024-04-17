@@ -20,7 +20,7 @@ const LoginPage = () => {
     if (localStorage.getItem("ACCESSTOKEN")) {
       nav(
         localStorage.getItem("USERTYPE") === "ADMIN"
-          ? "/admin/users"
+          ? "/admin/dashboard"
           : "/dashboard"
       );
     }

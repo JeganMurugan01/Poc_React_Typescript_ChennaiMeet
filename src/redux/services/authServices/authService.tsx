@@ -1,13 +1,14 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { BASEURL } from "../../../constants";
 
 interface LoginResponse {
-  userType:string
+  userType: string;
   token: string;
 }
 
 export const authApi = createApi({
-  baseQuery: fetchBaseQuery({ baseUrl: `${BASEURL}/api/v1/` }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: `${process.env.REACT_APP_BASE_URL}/api/v1/`,
+  }),
   tagTypes: [],
   endpoints: (builder) => ({
     login: builder.mutation<LoginResponse, Partial<LoginResponse>>({
@@ -32,5 +33,3 @@ export const authApi = createApi({
 });
 
 export const { useLoginMutation, useSignUpMutation } = authApi;
-
-

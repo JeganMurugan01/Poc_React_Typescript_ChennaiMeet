@@ -15,6 +15,7 @@ const DashBoard = () => {
 
   const handleSubmit = () => {
     // Handle submitting the code
+    //for future use
   };
 
   return (
