@@ -5,8 +5,12 @@ import { IoMdDocument } from "react-icons/io";
 import { IoDocumentText } from "react-icons/io5";
 import { HiDocumentText } from "react-icons/hi";
 import { FaAnglesDown, FaAnglesUp } from "react-icons/fa6";
+import { useGetFileMetaDataQuery } from "../../../redux/services/filerServices/fileService";
 
 export const AdminDashBoard = () => {
+  const { data } = useGetFileMetaDataQuery();
+  console.log(data, "data");
+
   return (
     <>
       <div className="card text-white mt-4 ms-2 me-2 bgColor shadow">
@@ -47,10 +51,7 @@ export const AdminDashBoard = () => {
               </div>
               <div className="col-6 mt-5">
                 <h6>Total Files</h6>
-                <label>Count : 9</label>
-              </div>
-              <div className="col mt-5 p-2">
-                <FaAnglesUp size={20} /> 25%
+                <label>Count : {data && data?.total}</label>
               </div>
             </div>
           </div>
@@ -63,10 +64,19 @@ export const AdminDashBoard = () => {
               </div>
               <div className="col-6 mt-5">
                 <h6>Today Files</h6>
-                <label>Count : 9</label>
+                <label>Count : {data && data?.today}</label>
               </div>
               <div className="col mt-5 p-2">
-                <FaAnglesDown size={20} /> 25%
+                {data && data?.gainToday ? (
+                  <>
+                    <FaAnglesUp size={20} /> {data && data?.fileDifferenceToday}
+                  </>
+                ) : (
+                  <>
+                    <FaAnglesDown size={20} className="me-2" />
+                    {data && data?.fileDifferenceToday}
+                  </>
+                )}
               </div>
             </div>
           </div>
@@ -81,10 +91,20 @@ export const AdminDashBoard = () => {
               </div>
               <div className="col-6 mt-5">
                 <h6>This Week Files</h6>
-                <label>Count : 9</label>
+                <label>Count : {data && data?.week}</label>
               </div>
               <div className="col mt-5 p-2">
-                <FaAnglesDown size={20} /> 25%
+                {data && data?.gainThisWeek ? (
+                  <>
+                    <FaAnglesUp size={20} />{" "}
+                    {data && data?.fileDifferenceThisWeek}
+                  </>
+                ) : (
+                  <>
+                    <FaAnglesDown size={20} className="me-2" />
+                    {data && data?.fileDifferenceThisWeek}
+                  </>
+                )}
               </div>
             </div>
           </div>
@@ -97,10 +117,20 @@ export const AdminDashBoard = () => {
               </div>
               <div className="col-6 mt-5">
                 <h6>This Month Files</h6>
-                <label>Count : 9</label>
+                <label>Count : {data && data?.month}</label>
               </div>
               <div className="col mt-5 p-2">
-                <FaAnglesUp size={20} /> 25%
+                {data && data?.gainThisMonth ? (
+                  <>
+                    <FaAnglesUp size={20} />{" "}
+                    {data && data?.fileDifferenceThisMonth}
+                  </>
+                ) : (
+                  <>
+                    <FaAnglesDown size={20} className="me-2" />
+                    {data && data?.fileDifferenceThisMonth}
+                  </>
+                )}
               </div>
             </div>
           </div>

@@ -23,6 +23,13 @@ export const fileServiceApi = createApi({
         };
       },
     }),
+    getFileMetaData: builder.query<any, void>({
+      query: () => {
+        return {
+          url: `file/getMetaData`,
+        };
+      },
+    }),
   }),
 });
-export const { useGetAllFilesQuery } = fileServiceApi;
+export const { useGetAllFilesQuery, useGetFileMetaDataQuery } = fileServiceApi;
