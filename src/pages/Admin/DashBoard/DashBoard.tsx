@@ -6,10 +6,16 @@ import { IoDocumentText } from "react-icons/io5";
 import { HiDocumentText } from "react-icons/hi";
 import { FaAnglesDown, FaAnglesUp } from "react-icons/fa6";
 import { useGetFileMetaDataQuery } from "../../../redux/services/filerServices/fileService";
+import { useNavigate } from "react-router-dom";
 
 export const AdminDashBoard = () => {
   const { data } = useGetFileMetaDataQuery();
+  const nav = useNavigate();
   console.log(data, "data");
+  const Logout = () => {
+    localStorage.clear();
+    nav("/");
+  };
 
   return (
     <>
@@ -35,7 +41,7 @@ export const AdminDashBoard = () => {
             </div>
             <div className="col-8"></div>
             <div className="col-1">
-              <button className="btn btn-light text-dark mt-3">
+              <button className="btn btn-light text-dark mt-3" onClick={Logout}>
                 {AdminDashboardLable?.LOGOUT}
               </button>
             </div>

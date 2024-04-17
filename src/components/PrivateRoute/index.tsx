@@ -2,14 +2,14 @@ import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 
 const PrivateRoute = () => {
+  const accessToken = localStorage.getItem("ACCESSTOKEN");
   useEffect(() => {
-    const accessToken = localStorage.getItem("ACCESSTOKEN");
     if (!accessToken) {
       window.location.href = "/";
     }
   }, []);
 
-  return <Outlet />;
+  return accessToken && <Outlet />;
 };
 
 export default PrivateRoute;
