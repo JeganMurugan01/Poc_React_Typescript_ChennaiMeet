@@ -61,7 +61,7 @@ function App() {
             />
             <Route path="/admin/users" element={<Layout Child={Users} />} />
             <Route path="/admin/files" element={<Layout Child={Files} />} />
-            <Route path="/admin/config" element={<CommingSoon />} />
+            <Route path="/admin/Permission" element={<CommingSoon />} />
             <Route path="*" element={<Layout Child={PageNotFound} />} />
           </>
         );
