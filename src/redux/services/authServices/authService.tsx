@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 interface LoginResponse {
+  userName: string;
   userType: string;
   token: string;
 }

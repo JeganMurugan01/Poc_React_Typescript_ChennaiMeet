@@ -7,7 +7,7 @@ export const USERS = {
   ADDUSER: "Add User",
   ACTIVEUSERS: "Active Users List:",
 };
-export const BASEURL="https://849e-103-160-171-236.ngrok-free.app"
+export const BASEURL = "https://849e-103-160-171-236.ngrok-free.app";
 export const COMPILER = {
   HEADING: "Online Compiler",
 };
@@ -60,7 +60,7 @@ interface AdminHeaderLabel {
 export const AdminHeaderLable: AdminHeaderLabel[] = [
   {
     label: "Dashboard",
-    pathName: "/admin/dashboad",
+    pathName: "/admin/dashboard",
   },
   {
     label: "Users",
@@ -95,3 +95,8 @@ export const UserHeaderLable: UserHeaderLabel[] = [
     pathName: "/user/compiler",
   },
 ];
+
+export const AdminDashboardLable = {
+  WELCOME: "Welcome back",
+  LOGOUT: "Logout",
+};

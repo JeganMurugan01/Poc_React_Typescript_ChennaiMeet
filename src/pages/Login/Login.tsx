@@ -16,6 +16,7 @@ const LoginPage = () => {
     if (loginData.isSuccess) {
       localStorage.setItem("ACCESSTOKEN", loginData?.data?.token);
       localStorage.setItem("USERTYPE", loginData?.data?.userType);
+      localStorage.setItem("USERNAME", loginData?.data?.userName);
     }
     if (localStorage.getItem("ACCESSTOKEN")) {
       nav(
