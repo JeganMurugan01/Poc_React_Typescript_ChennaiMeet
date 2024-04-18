@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 export const LOGIN = {
   RUN: "Run",
   SUBMIT: "Submit",
@@ -98,4 +100,21 @@ export const AdminDashboardLable = {
 
 export const PermissionLabel = {
   USERPERMISSION: "User Permissions",
+};
+
+export const UserProfileLabel = {
+  USERDETAILSHEADING: "User Details",
+  FIRSTNAME: "FirstName :",
+  LASTNAME: "LastName :",
+  ADDRESS: "Address :",
+  PHONENUMBER: "PhoneNumber :",
+  PINCODE: "PinCode :",
+  STATE: "State :",
+  ACTIVE: "UserStatus:",
+};
+
+export const Logout = () => {
+  const nav = useNavigate();
+  localStorage.clear();
+  nav("/");
 };

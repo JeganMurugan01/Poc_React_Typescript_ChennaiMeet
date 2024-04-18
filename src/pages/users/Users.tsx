@@ -3,11 +3,15 @@ import { useEffect, useState } from "react";
 import { transformData } from "../../utils/helper";
 import Table from "../../components/Table/Table";
 import { useGetUsersQuery } from "../../redux/services/userServices/userService";
-import { USERS } from "../../constants";
+import { Logout, USERS } from "../../constants";
 
 const Users = () => {
   const [tableData, setTableData] = useState<any>();
-  const { data, isSuccess } = useGetUsersQuery();
+  const { data, isSuccess, error } = useGetUsersQuery();
+
+  if (error) {
+    Logout();
+  }
 
   useEffect(() => {
     if (isSuccess && data) {

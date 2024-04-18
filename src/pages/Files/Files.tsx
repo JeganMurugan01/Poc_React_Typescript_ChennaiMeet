@@ -3,10 +3,14 @@ import { useEffect, useState } from "react";
 import Table from "../../components/Table/Table";
 import { useGetAllFilesQuery } from "../../redux/services/filerServices/fileService";
 import { transformData } from "../../utils/helper";
+import { Logout } from "../../constants";
 
 const Files = () => {
   const [tableData, setTableData] = useState<any>();
-  const { data, isSuccess } = useGetAllFilesQuery({ page: 1, limit: 5 });
+  const { data, isSuccess, error } = useGetAllFilesQuery({ page: 1, limit: 5 });
+  if (error) {
+    Logout();
+  }
   console.log(data, "data");
   useEffect(() => {
     if (isSuccess && data) {

@@ -41,7 +41,7 @@ export const AdminDashBoard = () => {
             </div>
             <div className="col-8"></div>
             <div className="col-1">
-              <button className="btn btn-light text-dark mt-3" onClick={Logout}>
+              <button className="btn btn-light text-dark mt-3 fw-bolder" onClick={Logout}>
                 {AdminDashboardLable?.LOGOUT}
               </button>
             </div>

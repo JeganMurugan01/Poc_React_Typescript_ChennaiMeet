@@ -10,6 +10,7 @@ import Files from "./pages/Files/Files";
 import { AdminDashBoard } from "./pages/Admin/DashBoard/DashBoard";
 import DashBoard from "./pages/Dashboard/Dashboard";
 import Permission from "./pages/Permission/Permission";
+import { UserProfile } from "./pages/UserProfile/UserProfile";
 
 function App() {
   const navigate = useNavigate();
@@ -64,6 +65,10 @@ function App() {
             <Route
               path="/admin/Permission"
               element={<Layout Child={Permission} />}
+            />
+            <Route
+              path="/admin/userDetails"
+              element={<Layout Child={UserProfile} />}
             />
             <Route path="*" element={<Layout Child={PageNotFound} />} />
           </>

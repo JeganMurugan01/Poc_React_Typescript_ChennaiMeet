@@ -5,6 +5,6 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   define: {
-    "process.env": { REACT_APP_BASE_URL: "http://localhost:3000" },
+    "process.env": { REACT_APP_BASE_URL: "http://localhost:3001" },
   },
 });
