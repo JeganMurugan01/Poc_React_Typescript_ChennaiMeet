@@ -12,8 +12,7 @@ const Users = () => {
   if (error) {
     Logout();
   }
-
-  useEffect(() => {
+  const onGridReady =()=>{
     if (isSuccess && data) {
       const orgData = (data as any).data;
       console.log(orgData, "orgData");
@@ -23,7 +22,12 @@ const Users = () => {
       }));
       setTableData(transformData(modifiedData));
     }
+  }
+
+  useEffect(() => {
+    onGridReady()
   }, [data, isSuccess]);
+
   console.log(tableData, "tableData");
 
   return (
@@ -34,7 +38,7 @@ const Users = () => {
       <div className="row">
         <div className="col-md-12 col-lg-12 col-sm-12 ">
           <div className="ms-2 me-2">
-            <Table rowData={tableData?.rowData} colDefs={tableData?.colDefs} />
+            <Table rowData={tableData?.rowData} colDefs={tableData?.colDefs} onGridReady={onGridReady} />
           </div>
         </div>
       </div>

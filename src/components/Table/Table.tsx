@@ -13,7 +13,7 @@ import "ag-grid-charts-enterprise";
 
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const Table = ({ rowData, colDefs, onCellClicked }: any) => {
+const Table = ({ rowData, colDefs, onCellClicked,onGridReady }: any) => {
   const containerStyle = useMemo(() => ({ width: "100%", height: "100%" }), []);
   const gridStyle = useMemo(() => ({ height: "100%", width: "100%" }), []);
   console.log(rowData, colDefs, "rowData, colDefs");
@@ -44,6 +44,8 @@ const Table = ({ rowData, colDefs, onCellClicked }: any) => {
           allowContextMenuWithControlKey={true}
           defaultColDef={defaultColDef}
           onCellClicked={onCellClicked}
+          pagination={true}
+          onGridReady={onGridReady}
         />
       </div>
     </div>
