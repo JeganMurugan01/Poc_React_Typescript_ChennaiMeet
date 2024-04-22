@@ -1,8 +1,11 @@
 import { useLocation } from "react-router-dom";
 import { UserProfileLabel } from "../../constants";
-import { useGetUsersByIdQuery } from "../../redux/services/userServices/userService";
+import {
+  useGetUsersByIdQuery,
+  useUserConfigMutation,
+} from "../../redux/services/userServices/userService";
 import "../Admin/DashBoard/index.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaEdit } from "react-icons/fa";
 export const UserProfile = () => {
   const [edit, setEdit] = useState<boolean>(false);
@@ -13,7 +16,8 @@ export const UserProfile = () => {
     useState<boolean>(false);
   const [isCoAdminCheckboxDisabled, setIsCoAdminCheckboxDisabled] =
     useState<boolean>(false);
-
+  const [userTypePayload, userTypeData] = useUserConfigMutation();
+  console.log(userTypeData, "userTypeData");
   const handleCheckboxChange = (checkedType: string) => {
     if (checkedType === "USER") {
       setIsCoAdminCheckboxDisabled(true);
@@ -25,6 +29,14 @@ export const UserProfile = () => {
       setUserType("COADMIN");
     }
   };
+  useEffect(() => {
+    if (userType) {
+      userTypePayload({
+        userType: userType,
+        userId: location.state.id,
+      });
+    }
+  }, [userType]);
   return (
     <>
       <h4 className="d-flex justify-content-left mt-3 ms-3 ">

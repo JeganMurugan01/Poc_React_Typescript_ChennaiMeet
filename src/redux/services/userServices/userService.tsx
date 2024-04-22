@@ -30,7 +30,7 @@ export const userApi = createApi({
         };
       },
     }),
-    userConfig: builder.query<any, void>({
+    userConfig: builder.mutation<any, { userType: string; userId: string }>({
       query(body) {
         return {
           url: "userConfig",
@@ -42,4 +42,5 @@ export const userApi = createApi({
   }),
 });
 
-export const { useGetUsersQuery, useGetUsersByIdQuery } = userApi;
+export const { useGetUsersQuery, useGetUsersByIdQuery, useUserConfigMutation } =
+  userApi;
