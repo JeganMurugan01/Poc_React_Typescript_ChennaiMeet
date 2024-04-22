@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Logout, PermissionLabel } from "../../constants";
-import { transformData } from "../../utils/helper";
-import Table from "../../components/Table/Table";
-import { useGetUsersQuery } from "../../redux/services/userServices/userService";
+import { Logout, PermissionLabel } from "../../../constants";
+import { transformData } from "../../../utils/helper";
+import Table from "../../../components/Table/Table";
+import { useGetUsersQuery } from "../../../redux/services/userServices/userService";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 

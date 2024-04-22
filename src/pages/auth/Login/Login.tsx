@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router";
-import { LOGIN, Logindata } from "../../constants";
-import { useLoginMutation } from "../../redux/services/authServices/authService";
+import { LOGIN, Logindata } from "../../../constants";
+import { useLoginMutation } from "../../../redux/services/authServices/authService";
 import { useEffect } from "react";
-import Form from "../../components/Form/Form";
+import Form from "../../../components/Form/Form";
 
 const LoginPage = () => {
   const [loginPayload, loginData] = useLoginMutation();
@@ -22,7 +22,7 @@ const LoginPage = () => {
       nav(
         localStorage.getItem("USERTYPE") === "ADMIN"
           ? "/admin/dashboard"
-          : "/dashboard"
+          : "/user/dashboard"
       );
     }
   }, [loginData]);

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Compiler from "../Compiler/Compiler";
+import Compiler from "../../../components/Compiler/Compiler";
 
-const DashBoard = () => {
+const Editor = () => {
   const [language, setLanguage] = useState<string>("javascript");
   const [code, setCode] = useState<string>("");
   const [theme, setTheme] = useState<string>("light");
@@ -16,6 +16,7 @@ const DashBoard = () => {
   const handleSubmit = () => {
     // Handle submitting the code
     //for future use
+    setCode("Test");
   };
 
   return (
@@ -32,4 +33,4 @@ const DashBoard = () => {
   );
 };
 
-export default DashBoard;
+export default Editor;

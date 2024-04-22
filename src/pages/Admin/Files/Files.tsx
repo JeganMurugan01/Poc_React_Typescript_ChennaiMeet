@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
-import Table from "../../components/Table/Table";
-import { useGetAllFilesQuery } from "../../redux/services/filerServices/fileService";
-import { transformData } from "../../utils/helper";
-import { Logout } from "../../constants";
+import Table from "../../../components/Table/Table";
+import { useGetAllFilesQuery } from "../../../redux/services/filerServices/fileService";
+import { transformData } from "../../../utils/helper";
+import { Logout } from "../../../constants";
 
 const Files = () => {
   const [tableData, setTableData] = useState<any>();

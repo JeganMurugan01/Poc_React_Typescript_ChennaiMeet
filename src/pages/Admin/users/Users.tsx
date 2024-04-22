@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
-import { transformData } from "../../utils/helper";
-import Table from "../../components/Table/Table";
-import { useGetUsersQuery } from "../../redux/services/userServices/userService";
-import { Logout, USERS } from "../../constants";
+import { transformData } from "../../../utils/helper";
+import Table from "../../../components/Table/Table";
+import { useGetUsersQuery } from "../../../redux/services/userServices/userService";
+import { Logout, USERS } from "../../../constants";
 
 const Users = () => {
   const [tableData, setTableData] = useState<any>();
@@ -12,7 +12,7 @@ const Users = () => {
   if (error) {
     Logout();
   }
-  const onGridReady =()=>{
+  const onGridReady = () => {
     if (isSuccess && data) {
       const orgData = (data as any).data;
       console.log(orgData, "orgData");
@@ -22,10 +22,10 @@ const Users = () => {
       }));
       setTableData(transformData(modifiedData));
     }
-  }
+  };
 
   useEffect(() => {
-    onGridReady()
+    onGridReady();
   }, [data, isSuccess]);
 
   console.log(tableData, "tableData");
@@ -38,7 +38,11 @@ const Users = () => {
       <div className="row">
         <div className="col-md-12 col-lg-12 col-sm-12 ">
           <div className="ms-2 me-2">
-            <Table rowData={tableData?.rowData} colDefs={tableData?.colDefs} onGridReady={onGridReady} />
+            <Table
+              rowData={tableData?.rowData}
+              colDefs={tableData?.colDefs}
+              onGridReady={onGridReady}
+            />
           </div>
         </div>
       </div>

@@ -1,9 +1,9 @@
 import { useLocation } from "react-router-dom";
-import { UserProfileLabel } from "../../constants";
+import { UserProfileLabel } from "../../../constants";
 import {
   useGetUsersByIdQuery,
   useUserConfigMutation,
-} from "../../redux/services/userServices/userService";
+} from "../../../redux/services/userServices/userService";
 import "../Admin/DashBoard/index.css";
 import { useEffect, useState } from "react";
 import { FaEdit } from "react-icons/fa";

@@ -1,5 +1,5 @@
 import { PiFilesFill } from "react-icons/pi";
-import { AdminDashboardLable } from "../../../constants";
+import { DashboardLable } from "../../../constants";
 import "./index.css";
 import { IoMdDocument } from "react-icons/io";
 import { IoDocumentText } from "react-icons/io5";
@@ -31,9 +31,7 @@ export const AdminDashBoard = () => {
               />
             </div>
             <div className="col-2">
-              <p className="p-0 mb-0 fw-lighter">
-                {AdminDashboardLable?.WELCOME}
-              </p>
+              <p className="p-0 mb-0 fw-lighter">{DashboardLable?.WELCOME}</p>
               <h6>{localStorage.getItem("USERNAME")}</h6>
               <span className="badge bg-white text-dark">
                 {localStorage?.getItem("USERTYPE")}
@@ -41,8 +39,11 @@ export const AdminDashBoard = () => {
             </div>
             <div className="col-8"></div>
             <div className="col-1">
-              <button className="btn btn-light text-dark mt-3 fw-bolder" onClick={Logout}>
-                {AdminDashboardLable?.LOGOUT}
+              <button
+                className="btn btn-light text-dark mt-3 fw-bolder"
+                onClick={Logout}
+              >
+                {DashboardLable?.LOGOUT}
               </button>
             </div>
           </div>

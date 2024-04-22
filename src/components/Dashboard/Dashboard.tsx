@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Compiler from "../../pages/Compiler/Compiler";
+import Compiler from "../Compiler/Compiler";
 
 const DashBoard = () => {
   const [language, setLanguage] = useState<string>("javascript");

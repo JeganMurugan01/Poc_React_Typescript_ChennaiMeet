@@ -85,7 +85,7 @@ interface UserHeaderLabel {
 export const UserHeaderLable: UserHeaderLabel[] = [
   {
     label: "Dashboard",
-    pathName: "/user/dashboad",
+    pathName: "/user/dashboard",
   },
   {
     label: "Compiler",
@@ -93,7 +93,7 @@ export const UserHeaderLable: UserHeaderLabel[] = [
   },
 ];
 
-export const AdminDashboardLable = {
+export const DashboardLable = {
   WELCOME: "Welcome back",
   LOGOUT: "Logout",
 };

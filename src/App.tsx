@@ -1,16 +1,17 @@
 import { useEffect } from "react";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
-import LoginPage from "./pages/Login/Login";
+import LoginPage from "./pages/auth/Login/Login";
 import PageNotFound from "./pages/404/PageNotFound";
 import Layout from "./components/Layout";
-import { Signup } from "./pages/SignupPage/Signup";
+import { Signup } from "./pages/auth/SignupPage/Signup";
 import PrivateRoute from "./components/PrivateRoute";
-import Users from "./pages/users/Users";
-import Files from "./pages/Files/Files";
+import Users from "./pages/Admin/users/Users";
+import Files from "./pages/Admin/Files/Files";
 import { AdminDashBoard } from "./pages/Admin/DashBoard/DashBoard";
-import DashBoard from "./pages/Dashboard/Dashboard";
-import Permission from "./pages/Permission/Permission";
-import { UserProfile } from "./pages/UserProfile/UserProfile";
+import Permission from "./pages/Admin/Permission/Permission";
+import { UserProfile } from "./pages/Admin/UserProfile/UserProfile";
+import Editor from "./pages/User/Editor/Editor";
+import { UserDashboard } from "./pages/User/Dashboard";
 
 function App() {
   const navigate = useNavigate();
@@ -49,10 +50,8 @@ function App() {
     };
   }, [navigate, location]);
 
-  const userType: string = "ADMIN";
-
   const renderRoutes = () => {
-    switch (userType) {
+    switch (localStorage.getItem("USERTYPE")) {
       case "ADMIN":
         return (
           <>
@@ -76,7 +75,11 @@ function App() {
       case "USER":
         return (
           <>
-            <Route path="/dashboard" element={<Layout Child={DashBoard} />} />
+            <Route
+              path="/user/dashboard"
+              element={<Layout Child={UserDashboard} />}
+            />
+            <Route path="/user/compiler" element={<Layout Child={Editor} />} />
             <Route path="*" element={<Layout Child={PageNotFound} />} />
           </>
         );
