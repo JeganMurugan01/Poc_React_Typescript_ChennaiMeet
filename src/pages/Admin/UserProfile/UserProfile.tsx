@@ -4,7 +4,7 @@ import {
   useGetUsersByIdQuery,
   useUserConfigMutation,
 } from "../../../redux/services/userServices/userService";
-import "../Admin/DashBoard/index.css";
+import "../DashBoard/index.css";
 import { useEffect, useState } from "react";
 import { FaEdit } from "react-icons/fa";
 export const UserProfile = () => {
