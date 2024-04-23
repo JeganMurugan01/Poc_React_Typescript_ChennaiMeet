@@ -1,3 +1,4 @@
+import moment from "moment";
 import { FaEdit, FaTrash } from "react-icons/fa";
 
 interface RowDataItem {
@@ -20,27 +21,40 @@ export const transformData = (data: RowDataItem[]): TransformedData => {
   }
 
   const columnKeys = Object.keys(data[0]);
-  const transformedRowData = data.map((item) => {
-    const rowDataItem: RowDataItem = {};
-    columnKeys.forEach((key) => {
-      rowDataItem[key] = item[key];
-    });
-    return rowDataItem;
-  });
-
-  const transformedColDefs = columnKeys.map((key) => {
+  const transformedColDefs =   data.map((item)=>columnKeys.map((key) => {    
     return {
       headerName: key,
       field: key,
+      hide:key==="id",
       ...(key === "action"
         ? {
             cellRenderer: () => <FaTrash style={{ cursor: "pointer" }} />,
           }
-        : key === "edit" && {
+        : key === "edit" ? {
             cellRenderer: () => <FaEdit size={18} style={{ cursor: "pointer" }} />,
+          }:key === "createdAt" && {
+            cellRenderer: () => getFormatDate(item.createdAt),
           }),
     };
-  });
+  }))
 
-  return { rowData: transformedRowData, colDefs: transformedColDefs };
+  return { rowData: data, colDefs: transformedColDefs[0] };
 };
+
+
+export const getFormatDate=(timestamp:Date)=> {
+  const date = moment(timestamp);
+  const now = moment();
+
+  if (date.isSame(now, 'day')) {
+    return date.format('LT'); // Time format
+  } else if (date.isSame(now.clone().subtract(1, 'day'), 'day')) {
+    return 'Yesterday';
+  } else if (date.isSame(now, 'month')) {
+    return `${now.diff(date, 'days')} days ago`;
+  } else if (date.isSame(now, 'year')) {
+    return `${now.diff(date, 'months')} months ago`;
+  } else {
+    return date.format('MM-DD-YYYY'); // Default format
+  }
+}
