@@ -1,3 +1,5 @@
+import { FaCuttlefish, FaJava } from "react-icons/fa";
+import { SiCplusplus, SiCsharp, SiJavascript } from "react-icons/si";
 import { useNavigate } from "react-router-dom";
 
 export const LOGIN = {
@@ -117,4 +119,26 @@ export const Logout = () => {
   const nav = useNavigate();
   localStorage.clear();
   nav("/");
+};
+
+export const UserDashboardLabel = {
+  PREPARE: "PREPARE BY TOPICS",
+};
+
+export const IconReturn = (IconName: string) => {
+  switch (IconName) {
+    case "C":
+      return <FaCuttlefish size={50} />;
+
+    case "C#":
+      return <SiCsharp size={50} />;
+
+    case "Java":
+      return <FaJava size={50} />;
+
+    case "Javascript":
+      return <SiJavascript size={50} />;
+    case "C++":
+      return <SiCplusplus size={50} />;
+  }
 };

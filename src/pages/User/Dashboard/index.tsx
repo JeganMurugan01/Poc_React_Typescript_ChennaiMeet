@@ -1,7 +1,13 @@
 import { useNavigate } from "react-router-dom";
-import { DashboardLable } from "../../../constants";
+import {
+  DashboardLable,
+  IconReturn,
+  UserDashboardLabel,
+} from "../../../constants";
+import { useGetSkillsListQuery } from "../../../redux/services/skillsServices/skillsService";
 
 export const UserDashboard = () => {
+  const { data } = useGetSkillsListQuery();
   const nav = useNavigate();
   const Logout = () => {
     localStorage.clear();
@@ -40,6 +46,35 @@ export const UserDashboard = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className="row m-2">
+        {data?.data &&
+          data?.data?.length > 0 &&
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          data?.data?.map((value: any) => {
+            return (
+              <>
+                <div className="col-md-6 text-white padding-start-0 mt-3">
+                  <div className="card-body bgColor rounded shadow">
+                    <div className="row">
+                      <div className="col-3 text-center p-5">
+                        {IconReturn(value?.Language?.languageType)}
+                      </div>
+                      <div className="col-5 mt-5">
+                        <h6>{UserDashboardLabel?.PREPARE}</h6>
+                        <label>
+                          Language : {value && value?.Language?.languageType}
+                        </label>
+                      </div>
+                      <div className="col-4 text-center p-5 mt-2 ">
+                        <button className="btn btn-light">Continue</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </>
+            );
+          })}
       </div>
     </>
   );
