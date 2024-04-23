@@ -1,13 +1,19 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useNavigate } from "react-router-dom";
 import {
   DashboardLable,
   IconReturn,
   UserDashboardLabel,
 } from "../../../constants";
-import { useGetSkillsListQuery } from "../../../redux/services/skillsServices/skillsService";
+import {
+  useGetSkillsLanguageQuery,
+  useGetSkillsListQuery,
+} from "../../../redux/services/skillsServices/skillsService";
+import "./dashBoard.css";
 
 export const UserDashboard = () => {
-  const { data } = useGetSkillsListQuery();
+  const { data: skillsListData } = useGetSkillsListQuery();
+  const { data: skillsLanguageData } = useGetSkillsLanguageQuery();
   const nav = useNavigate();
   const Logout = () => {
     localStorage.clear();
@@ -48,10 +54,10 @@ export const UserDashboard = () => {
         </div>
       </div>
       <div className="row m-2">
-        {data?.data &&
-          data?.data?.length > 0 &&
+        {skillsListData?.data &&
+          skillsListData?.data?.length > 0 &&
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          data?.data?.map((value: any) => {
+          skillsListData?.data?.map((value: any) => {
             return (
               <>
                 <div className="col-md-6 text-white padding-start-0 mt-3">
@@ -75,6 +81,22 @@ export const UserDashboard = () => {
               </>
             );
           })}
+      </div>
+      <div>
+        <h5 className="p-3">Prepare By Topics</h5>
+        <div className="container">
+          <div className="row border rounded">
+            {skillsLanguageData &&
+              skillsLanguageData?.data?.length > 0 &&
+              skillsLanguageData?.data?.map((value: any) => {
+                return (
+                  <div className="col-4 border p-2 hover-cell">
+                    <p className="ms-3 fw-bold mt-2">{value?.languageType}</p>
+                  </div>
+                );
+              })}
+          </div>
+        </div>
       </div>
     </>
   );

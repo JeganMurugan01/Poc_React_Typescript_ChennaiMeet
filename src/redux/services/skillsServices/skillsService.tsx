@@ -23,6 +23,14 @@ export const skillsServiceApi = createApi({
         };
       },
     }),
+    getSkillsLanguage: builder.query<any, void>({
+      query: () => {
+        return {
+          url: "/language",
+        };
+      },
+    }),
   }),
 });
-export const { useGetSkillsListQuery } = skillsServiceApi;
+export const { useGetSkillsListQuery, useGetSkillsLanguageQuery } =
+  skillsServiceApi;
