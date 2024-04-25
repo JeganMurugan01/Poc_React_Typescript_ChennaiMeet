@@ -16,7 +16,6 @@ const Permission = () => {
   useEffect(() => {
     if (isSuccess && data) {
       const orgData = (data as any).data;
-      console.log(orgData, "orgData");
       const modifiedData = orgData.map((item: any) => ({
         ...item,
         edit: "",
@@ -24,7 +23,7 @@ const Permission = () => {
       setTableData(transformData(modifiedData));
     }
   }, [data, isSuccess]);
-  console.log(tableData, "tableData");
+
   const onCellClicked = (e: any) => {
     if (e?.colDef?.field === "edit") {
       nav("/admin/userDetails", { state: { id: e?.data?.id } });

@@ -2,12 +2,13 @@
 import { useEffect, useState } from "react";
 import { transformData } from "../../../utils/helper";
 import Table from "../../../components/Table/Table";
-import { useGetUsersQuery } from "../../../redux/services/userServices/userService";
+import { useDeleteUserMutation, useGetUsersQuery } from "../../../redux/services/userServices/userService";
 import { Logout, USERS } from "../../../constants";
 
 const Users = () => {
   const [tableData, setTableData] = useState<any>();
   const { data, isSuccess, error } = useGetUsersQuery();
+  const [deleteUser] = useDeleteUserMutation();
 
   if (error) {
     Logout();
@@ -15,7 +16,6 @@ const Users = () => {
   const onGridReady = () => {
     if (isSuccess && data) {
       const orgData = (data as any).data;
-      console.log(orgData, "orgData");
       const modifiedData = orgData.map((item: any) => ({
         ...item,
         action: "",
@@ -23,12 +23,16 @@ const Users = () => {
       setTableData(transformData(modifiedData));
     }
   };
+  
+  const onCellClicked =async(e: any) => {
+    if (e?.colDef?.field === "action") {
+      await deleteUser({id:e?.data?.id})
+    }
+  };
 
   useEffect(() => {
     onGridReady();
   }, [data, isSuccess]);
-
-  console.log(tableData, "tableData");
 
   return (
     <>
@@ -42,6 +46,7 @@ const Users = () => {
               rowData={tableData?.rowData}
               colDefs={tableData?.colDefs}
               onGridReady={onGridReady}
+              onCellClicked={onCellClicked}
             />
           </div>
         </div>
