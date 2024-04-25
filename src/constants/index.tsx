@@ -1,3 +1,5 @@
+import { FaCuttlefish, FaJava } from "react-icons/fa";
+import { SiCplusplus, SiCsharp, SiJavascript } from "react-icons/si";
 import { useNavigate } from "react-router-dom";
 
 export const LOGIN = {
@@ -117,4 +119,59 @@ export const Logout = () => {
   const nav = useNavigate();
   localStorage.clear();
   nav("/");
+};
+
+export const UserDashboardLabel = {
+  PREPARE: "PREPARE BY TOPICS",
+};
+
+export const IconReturn = (IconName: string) => {
+  switch (IconName) {
+    case "C":
+      return <FaCuttlefish size={50} />;
+
+    case "C#":
+      return <SiCsharp size={50} />;
+
+    case "Java":
+      return <FaJava size={50} />;
+
+    case "Javascript":
+      return <SiJavascript size={50} />;
+    case "C++":
+      return <SiCplusplus size={50} />;
+  }
+};
+
+export const DifficultyLevel = [
+  {
+    label: "Easy",
+    value: 1,
+  },
+  { label: "Medium", value: 2 },
+  { label: "Hard", value: 3 },
+];
+
+export const codeLevel = (level: number) => {
+  switch (level) {
+    case 1:
+      return (
+        <span>
+          DIFFICULTY <span className="text-success">Easy</span>
+        </span>
+      );
+    case 2:
+      return (
+        <span>
+          DIFFICULTY <span className="text-warning">Medium</span>
+        </span>
+      );
+
+    case 3:
+      return (
+        <span>
+          DIFFICULTY <span className="text-danger">Hard</span>
+        </span>
+      );
+  }
 };

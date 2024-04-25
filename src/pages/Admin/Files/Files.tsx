@@ -1,17 +1,32 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import Table from "../../../components/Table/Table";
-import { useGetAllFilesQuery } from "../../../redux/services/filerServices/fileService";
+import { useFileUploadMutation, useGetAllFilesQuery } from "../../../redux/services/filerServices/fileService";
 import { transformData } from "../../../utils/helper";
 import { Logout } from "../../../constants";
+import { Modal } from "../../../components/Modal/Modal";
+import AddFiles from "./AddFiles";
 
 const Files = () => {
+  const [file, setFile] = useState();
+  const [files, setFiles] = useState({language:"",level:0,topicName:""});
   const [tableData, setTableData] = useState<any>();
   const { data, isSuccess, error } = useGetAllFilesQuery({ page: 1, limit: 5 });
+  const [userTypePayload] = useFileUploadMutation();
   if (error) {
     Logout();
   }
-  console.log(data, "data");
+
+const handleSubmit=()=>{
+
+  const data = new FormData();
+    data.append('fileToUpload', file);
+    data.append('language', files?.language);
+    data.append('level', files?.level);
+    data.append('topicName', files?.topicName);
+    userTypePayload(data)
+}
+
   useEffect(() => {
     if (isSuccess && data) {
       const orgData = (data as any).data;
@@ -24,6 +39,15 @@ const Files = () => {
       <h4 className="d-flex justify-content-left mt-3 ms-3">
         List of qustions
       </h4>
+      <div className="text-end mb-2 me-2">
+        <Modal
+          children={<AddFiles setFile={setFile} files={files} setFiles={setFiles}/>}
+          Title="Modal"
+          SubmitBtn={"Submit"}
+          onClick={handleSubmit}
+          ModalBtn={"Add Modal"}
+        />
+      </div>
       <div className="row">
         <div className="col-md-12 col-lg-12 col-sm-12 ">
           <div className="ms-2 me-2">

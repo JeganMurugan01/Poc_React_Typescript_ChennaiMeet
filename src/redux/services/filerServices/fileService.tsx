@@ -16,13 +16,37 @@ export const fileServiceApi = createApi({
   reducerPath: "getAllFilesApi",
   tagTypes: [],
   endpoints: (builder) => ({
-    getAllFiles: builder.query<any, { page: number; limit: number }>({
-      query: ({ page, limit }) => {
+    getAllFiles: builder.query<
+      any,
+      { page: number; limit: number; language: string | "" }
+    >({
+      query: ({ page, limit, language }) => {
         return {
-          url: `file/getAllFiles/?page=${page}&limit=${limit}`,
+          url: `file/getAllFiles/?page=${page}&limit=${limit}&language=${
+            language?.length ? language : ""
+          }`,
         };
       },
     }),
+    fileUpload: builder.mutation<any, void>({
+      query(body) {
+        console.log(body);
+        
+        return {
+          url: "file/upload",
+          method: "POST",
+          body,
+        };
+      },
+    }),
+    getAllLanguages: builder.query<any, void>({
+      query: () => {
+        return {
+          url: "skills/language",
+        };
+      },
+    }),
+
     getFileMetaData: builder.query<any, void>({
       query: () => {
         return {
@@ -32,4 +56,9 @@ export const fileServiceApi = createApi({
     }),
   }),
 });
-export const { useGetAllFilesQuery, useGetFileMetaDataQuery } = fileServiceApi;
+export const {
+  useGetAllFilesQuery,
+  useGetFileMetaDataQuery,
+  useGetAllLanguagesQuery,
+  useFileUploadMutation,
+} = fileServiceApi;

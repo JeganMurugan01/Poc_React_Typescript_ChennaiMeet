@@ -2,13 +2,15 @@ import { useState } from "react";
 
 interface Ilayout {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  Child: React.ComponentType<any>;
+  children: any;
   Title: string;
   SubmitBtn: string;
   ModalBtn: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onClick: (data: any) => void;
 }
 
-export const Modal = ({ Child, Title, SubmitBtn, ModalBtn }: Ilayout) => {
+export const Modal = ({ children, Title, SubmitBtn, ModalBtn,onClick }: Ilayout) => {
   const [showModal, setShowModal] = useState(false);
 
   const handleModalToggle = () => {
@@ -19,7 +21,7 @@ export const Modal = ({ Child, Title, SubmitBtn, ModalBtn }: Ilayout) => {
     <>
       <button
         type="button"
-        className="btn btn-primary"
+        className="btn bg-212529 text-white"
         onClick={handleModalToggle}
       >
         {ModalBtn}
@@ -37,9 +39,7 @@ export const Modal = ({ Child, Title, SubmitBtn, ModalBtn }: Ilayout) => {
                   aria-label="Close"
                 ></button>
               </div>
-              <div className="modal-body">
-                <Child />
-              </div>
+              <div className="modal-body">{children}</div>
               <div className="modal-footer">
                 <button
                   type="button"
@@ -48,7 +48,7 @@ export const Modal = ({ Child, Title, SubmitBtn, ModalBtn }: Ilayout) => {
                 >
                   Close
                 </button>
-                <button type="button" className="btn btn-primary">
+                <button type="button" className="btn btn-primary" onClick={onClick}>
                   {SubmitBtn}
                 </button>
               </div>

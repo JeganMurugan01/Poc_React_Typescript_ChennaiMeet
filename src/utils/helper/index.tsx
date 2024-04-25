@@ -1,4 +1,5 @@
 import moment from "moment";
+import { Resolver } from "react-hook-form";
 import { FaEdit, FaTrash } from "react-icons/fa";
 
 interface RowDataItem {
@@ -20,26 +21,29 @@ export const transformData = (data: RowDataItem[]): TransformedData => {
     return { rowData: [], colDefs: [] };
   }
 
-  const columnKeys = Object.keys(data[0]);
-  const transformedColDefs =   data.map((item)=>columnKeys.map((key) => {    
-    return {
-      headerName: key,
-      field: key,
-      hide:key==="id",
-      ...(key === "action"
-        ? {
-            cellRenderer: () => <FaTrash style={{ cursor: "pointer" }} />,
-          }
-        : key === "edit" ? {
-            cellRenderer: () => <FaEdit size={18} style={{ cursor: "pointer" }} />,
-          }:key === "createdAt" && {
-            cellRenderer: () => getFormatDate(item.createdAt),
-          }),
-    };
-  }))
+  const transformedColDefs = Object.keys(data[0]).map((key) => ({
+    headerName: key,
+    field: key,
+    hide: key === "id",
+    ...(key === "action"
+      ? {
+          cellRenderer: () => <FaTrash style={{ cursor: "pointer" }} />,
+        }
+      : key === "edit"
+      ? {
+          cellRenderer: () => <FaEdit size={18} style={{ cursor: "pointer" }} />,
+        }
+      : key === "createdAt"
+      ? {
+          cellRenderer: (params: { value: Date; }) => getFormatDate(params.value),
+        }
+      : {}),
+  }));
 
-  return { rowData: data, colDefs: transformedColDefs[0] };
+  return { rowData: data, colDefs: transformedColDefs };
 };
+
+
 
 
 export const getFormatDate=(timestamp:Date)=> {
@@ -58,3 +62,18 @@ export const getFormatDate=(timestamp:Date)=> {
     return date.format('MM-DD-YYYY'); // Default format
   }
 }
+export const resolver: Resolver = async (values) => {
+  const errors: { [key: string]: { type: string; message: string } } = {};
+  Object.entries(values).forEach(([key, value]) => {
+    if (!value) {
+      errors[key] = {
+        type: "required",
+        message: `${key} is required`,
+      };
+    }
+  });
+  return {
+    values: values,
+    errors: errors,
+  };
+};
