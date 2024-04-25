@@ -93,6 +93,10 @@ export const UserHeaderLable: UserHeaderLabel[] = [
     label: "Compiler",
     pathName: "/user/compiler",
   },
+  {
+    label:"Questions",
+    pathName:"/user/questions"
+  }
 ];
 
 export const DashboardLable = {
@@ -140,5 +144,29 @@ export const IconReturn = (IconName: string) => {
       return <SiJavascript size={50} />;
     case "C++":
       return <SiCplusplus size={50} />;
+  }
+};
+
+export const codeLevel = (level: number) => {
+  switch (level) {
+    case 1:
+      return (
+        <span>
+          DIFFICULTY <span className="text-success">Easy</span>
+        </span>
+      );
+    case 2:
+      return (
+        <span>
+          DIFFICULTY <span className="text-warning">Medium</span>
+        </span>
+      );
+
+    case 3:
+      return (
+        <span>
+          DIFFICULTY <span className="text-danger">Hard</span>
+        </span>
+      );
   }
 };

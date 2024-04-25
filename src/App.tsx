@@ -12,6 +12,8 @@ import Permission from "./pages/Admin/Permission/Permission";
 import { UserProfile } from "./pages/Admin/UserProfile/UserProfile";
 import Editor from "./pages/User/Editor/Editor";
 import { UserDashboard } from "./pages/User/Dashboard";
+import { Domain } from "./pages/User/Domain";
+import Questions from "./pages/User/Questions/Questions";
 
 function App() {
   const navigate = useNavigate();
@@ -80,6 +82,11 @@ function App() {
               element={<Layout Child={UserDashboard} />}
             />
             <Route path="/user/compiler" element={<Layout Child={Editor} />} />
+            <Route path="/user/domain" element={<Layout Child={Domain} />} />
+            <Route
+              path="/user/questions"
+              element={<Layout Child={Questions} />}
+            />
             <Route path="*" element={<Layout Child={PageNotFound} />} />
           </>
         );

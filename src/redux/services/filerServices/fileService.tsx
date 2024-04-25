@@ -16,10 +16,10 @@ export const fileServiceApi = createApi({
   reducerPath: "getAllFilesApi",
   tagTypes: [],
   endpoints: (builder) => ({
-    getAllFiles: builder.query<any, { page: number; limit: number }>({
-      query: ({ page, limit }) => {
+    getAllFiles: builder.query<any,{ page: number; limit: number; language: string | "" }>({
+      query: ({ page, limit, language }) => {
         return {
-          url: `file/getAllFiles/?page=${page}&limit=${limit}`,
+          url: `file/getAllFiles/?page=${page}&limit=${limit}&language=${language}`,
         };
       },
     }),
