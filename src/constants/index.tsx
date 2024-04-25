@@ -93,6 +93,10 @@ export const UserHeaderLable: UserHeaderLabel[] = [
     label: "Compiler",
     pathName: "/user/compiler",
   },
+  {
+    label:"Questions",
+    pathName:"/user/questions"
+  }
 ];
 
 export const DashboardLable = {

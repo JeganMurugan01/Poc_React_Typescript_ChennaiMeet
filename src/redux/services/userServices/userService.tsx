@@ -47,8 +47,21 @@ export const userApi = createApi({
         };
       },
     }),
+    userMappedLanguage: builder.mutation<any, { id: string }>({
+      query(body) {
+        return {
+          url: "userMappedLanguage",
+          method: "POST",
+          body,
+        };
+      },
+    }),
   }),
 });
 
-export const { useGetUsersQuery, useGetUsersByIdQuery, useUserConfigMutation,useDeleteUserMutation } =
-  userApi;
+export const {
+  useGetUsersQuery,
+  useGetUsersByIdQuery,
+  useUserConfigMutation,
+  useUserMappedLanguageMutation,
+} = userApi;
