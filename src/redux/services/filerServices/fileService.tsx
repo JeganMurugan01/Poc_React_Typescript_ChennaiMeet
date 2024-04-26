@@ -18,7 +18,7 @@ export const fileServiceApi = createApi({
   endpoints: (builder) => ({
     getAllFiles: builder.query<
       any,
-      { page: number; limit: number; language: string | "" }
+      { page: number; limit: number; language?: string | "" }
     >({
       query: ({ page, limit, language }) => {
         return {

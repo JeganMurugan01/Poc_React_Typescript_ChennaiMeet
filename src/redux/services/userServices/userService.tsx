@@ -64,4 +64,5 @@ export const {
   useGetUsersByIdQuery,
   useUserConfigMutation,
   useUserMappedLanguageMutation,
+  useDeleteUserMutation
 } = userApi;

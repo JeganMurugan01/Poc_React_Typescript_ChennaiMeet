@@ -14,6 +14,7 @@ import Editor from "./pages/User/Editor/Editor";
 import { UserDashboard } from "./pages/User/Dashboard";
 import { Domain } from "./pages/User/Domain";
 import Questions from "./pages/User/Questions/Questions";
+import "./css/style.css"
 
 function App() {
   const navigate = useNavigate();

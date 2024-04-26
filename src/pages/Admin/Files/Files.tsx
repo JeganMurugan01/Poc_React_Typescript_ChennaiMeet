@@ -36,10 +36,9 @@ const handleSubmit=()=>{
 
   return (
     <>
-      <h4 className="d-flex justify-content-left mt-3 ms-3">
+      <h4 className="d-flex justify-content-between mt-3 ms-3">
         List of qustions
-      </h4>
-      <div className="text-end mb-2 me-2">
+        <div className="mb-2 me-2">
         <Modal
           children={<AddFiles setFile={setFile} files={files} setFiles={setFiles}/>}
           Title="Modal"
@@ -48,6 +47,8 @@ const handleSubmit=()=>{
           ModalBtn={"Add Modal"}
         />
       </div>
+      </h4>
+      
       <div className="row">
         <div className="col-md-12 col-lg-12 col-sm-12 ">
           <div className="ms-2 me-2">
