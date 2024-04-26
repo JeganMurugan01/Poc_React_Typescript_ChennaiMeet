@@ -28,12 +28,43 @@ export const fileServiceApi = createApi({
         };
       },
     }),
+    getUserMappedQuestion:builder.query<
+    any,
+    { userId?: string | "" }
+  >({
+    query: ({ userId }) => {
+      return {
+        url: `file/getUserMappedQuestion/?userId=${
+          userId
+        }`,
+      };
+    },
+  }),
+  getQuestionById:builder.query<
+    any,
+    { questionId?: string | "" }
+  >({
+    query: ({ questionId }) => {
+      return {
+        url: `file/getQuestionById/?questionId=${
+          questionId
+        }`,
+      };
+    },
+  }),
     fileUpload: builder.mutation<any, void>({
       query(body) {
-        console.log(body);
-        
         return {
           url: "file/upload",
+          method: "POST",
+          body,
+        };
+      },
+    }),
+    questionAssignedBy: builder.mutation<any, void>({
+      query(body) {        
+        return {
+          url: "file/questionAssignedBy",
           method: "POST",
           body,
         };
@@ -46,7 +77,13 @@ export const fileServiceApi = createApi({
         };
       },
     }),
-
+    getUserQuestion: builder.query<any, void>({
+      query: () => {
+        return {
+          url: "/file/getUserQuestion",
+        };
+      },
+    }),
     getFileMetaData: builder.query<any, void>({
       query: () => {
         return {
@@ -61,4 +98,7 @@ export const {
   useGetFileMetaDataQuery,
   useGetAllLanguagesQuery,
   useFileUploadMutation,
+  useGetUserQuestionQuery,
+  useGetQuestionByIdQuery,
+  useQuestionAssignedByMutation,useGetUserMappedQuestionQuery
 } = fileServiceApi;

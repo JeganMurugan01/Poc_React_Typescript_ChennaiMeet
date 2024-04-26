@@ -1,34 +1,52 @@
-import { useState } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useEffect, useState } from "react";
 
 interface Ilayout {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   children: any;
   Title: string;
   SubmitBtn: string;
-  ModalBtn: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onClick: (data: any) => void;
+  ModalBtn?: string;
+  onClick?: (data: any) => void;
+  show?:boolean
+  size?:string
+  setShow?:React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export const Modal = ({ children, Title, SubmitBtn, ModalBtn,onClick }: Ilayout) => {
+export const Modal = ({
+  children,
+  Title,
+  SubmitBtn,
+  ModalBtn,
+  onClick,
+  size,
+  show,
+  setShow
+}: Ilayout) => {
   const [showModal, setShowModal] = useState(false);
 
   const handleModalToggle = () => {
     setShowModal(!showModal);
+    setShow(false)
   };
+
+  useEffect(()=>{
+    if(show) setShowModal(show)
+  },[show])
 
   return (
     <>
-      <button
-        type="button"
-        className="btn bg-212529 text-white"
-        onClick={handleModalToggle}
-      >
-        {ModalBtn}
-      </button>
+      {ModalBtn?.length && (
+        <button
+          type="button"
+          className="btn bg-212529 text-white"
+          onClick={handleModalToggle}
+        >
+          {ModalBtn}
+        </button>
+      )}
       {showModal && (
         <div className="modal" role="dialog" style={{ display: "block" }}>
-          <div className="modal-dialog" role="document">
+          <div className={`modal-dialog ${size} overflow-auto`} role="document">
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title">{Title}</h5>
@@ -48,7 +66,11 @@ export const Modal = ({ children, Title, SubmitBtn, ModalBtn,onClick }: Ilayout)
                 >
                   Close
                 </button>
-                <button type="button" className="btn btn-primary" onClick={onClick}>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={onClick}
+                >
                   {SubmitBtn}
                 </button>
               </div>

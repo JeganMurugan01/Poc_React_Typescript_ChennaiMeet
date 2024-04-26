@@ -9,6 +9,7 @@ type CompilerProps = {
   onLanguageChange: (language: string) => void;
   onThemeChange: (theme: string) => void;
   onSubmit: () => void;
+  File:string
 };
 const Compiler = ({
   language,
@@ -17,6 +18,7 @@ const Compiler = ({
   onLanguageChange,
   onThemeChange,
   onSubmit,
+  File,
 }: CompilerProps) => {
   const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     onLanguageChange(e.target.value);
@@ -36,9 +38,10 @@ const Compiler = ({
     <>
       <div>
         <div className="compiler-container">
-          <div className="question-section">
+          <div className="question-section overflow-auto">
             <h2>Question:</h2>
             <p>Enter your question here:</p>
+            <p style={{whiteSpace: "pre-line"}}>{File}</p>
           </div>
           <div className="editor-section">
             <div className="controls">

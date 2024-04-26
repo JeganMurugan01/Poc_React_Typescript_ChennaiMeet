@@ -1,7 +1,9 @@
 import { useState } from "react";
 import Compiler from "../../../components/Compiler/Compiler";
+import { useLocation } from "react-router-dom";
 
 const Editor = () => {
+  const location=useLocation();
   const [language, setLanguage] = useState<string>("javascript");
   const [code, setCode] = useState<string>("");
   const [theme, setTheme] = useState<string>("light");
@@ -28,6 +30,7 @@ const Editor = () => {
         onLanguageChange={handleLanguageChange}
         onThemeChange={handleThemeChange}
         onSubmit={handleSubmit}
+        File={location?.state}
       />
     </div>
   );

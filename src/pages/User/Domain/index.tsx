@@ -1,18 +1,34 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { FaArrowLeft } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useGetAllFilesQuery } from "../../../redux/services/filerServices/fileService";
+import {
+  useGetAllFilesQuery,
+  useGetQuestionByIdQuery,
+} from "../../../redux/services/filerServices/fileService";
 import { codeLevel } from "../../../constants";
+import { useEffect, useState } from "react";
 
 export const Domain = () => {
   const location = useLocation();
   const nav = useNavigate();
-  console.log(location?.state?.id, "location?.state?.id");
+  const [questionId, setQuestionId] = useState("");
   const { data } = useGetAllFilesQuery({
     page: 1,
     limit: 50,
     language: location?.state?.id === "C#" ? "C%23" : location?.state?.id,
   });
+  const questionById = useGetQuestionByIdQuery(
+    {
+      questionId: questionId,
+    },
+    { skip: questionId === "" ? true : false }
+  );
+
+  useEffect(()=>{
+    if(questionId !== "" &&questionById?.status!=="pending")
+   { console.log(questionById);
+    nav("/user/compiler",{state:questionById?.data?.question});}
+  },[questionById])
   return (
     <>
       <div style={{ overflowX: "hidden" }}>
@@ -42,28 +58,32 @@ export const Domain = () => {
             <div className="col-9">
               {data?.data.map((value: any, i: number) => {
                 return (
-                  <>
-                    <div className={`card ${i === 0 && "mt-5"} mt-2 ms-3`}>
-                      <div className="card-body">
-                        <div className="row">
-                          <div className="col-9 ">
-                            <div className="p-2">
-                              <h5 className="mt-2  "> {value?.topicName}</h5>
-                              <div className="" style={{ fontSize: "12px" }}>
-                                {codeLevel(value?.level)}{" "}
-                                <b>{location?.state?.id}</b>
-                              </div>
+                  <div className={`card ${i === 0 && "mt-5"} mt-2 ms-3`}>
+                    <div className="card-body">
+                      <div className="row">
+                        <div className="col-9 ">
+                          <div className="p-2">
+                            <h5 className="mt-2">{value?.topicName}</h5>
+                            <div className="" style={{ fontSize: "12px" }}>
+                              {codeLevel(value?.level)}{" "}
+                              <b>{location?.state?.id}</b>
                             </div>
                           </div>
-                          <div className="col-3">
-                            <button className=" btn btn-success mt-3 w-75 ">
-                              Solve
-                            </button>
-                          </div>
+                        </div>
+                        <div className="col-3">
+                          <button
+                            className=" btn btn-success mt-3 w-75 "
+                            onClick={() => {
+                              setQuestionId(value?.id);
+                              questionById?.refetch();
+                            }}
+                          >
+                            Solve
+                          </button>
                         </div>
                       </div>
                     </div>
-                  </>
+                  </div>
                 );
               })}
             </div>

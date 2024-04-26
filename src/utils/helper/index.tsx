@@ -24,8 +24,8 @@ export const transformData = (data: RowDataItem[]): TransformedData => {
   const transformedColDefs = Object.keys(data[0]).map((key) => ({
     headerName: key,
     field: key,
-    hide: key === "id",
-    ...(key === "action"
+    hide: key === "id"||key==="UserType",
+    ...(key === "Action"
       ? {
           cellRenderer: () => <FaTrash style={{ cursor: "pointer" }} />,
         }
