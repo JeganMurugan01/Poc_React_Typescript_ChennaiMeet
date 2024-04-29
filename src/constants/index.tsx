@@ -111,6 +111,10 @@ export const AdminHeaderLable: AdminHeaderLabel[] = [
     label: "Permission",
     pathName: "/admin/Permission",
   },
+  {
+    label: "Logout",
+    pathName: "/",
+  },
 ];
 
 interface UserHeaderLabel {

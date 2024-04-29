@@ -2,10 +2,14 @@ import { AdminHeaderLable, UserHeaderLable } from "../../constants";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { useNavigate } from "react-router-dom";
+import { FaPowerOff } from "react-icons/fa";
 
 const Header = () => {
   const nav = useNavigate();
-
+  const logOutButton = () => {
+    localStorage.clear();
+    nav("/");
+  };
   return (
     <div>
       <Navbar bg="dark" variant="dark" expand="lg">
@@ -22,7 +26,11 @@ const Header = () => {
                       nav(value?.pathName);
                     }}
                   >
-                    {value.label}
+                    {value.label === "Logout" ? (
+                      <FaPowerOff className="me-2" onClick={() => logOutButton()} />
+                    ) : (
+                      value.label
+                    )}
                   </label>
                 </Nav.Item>
               ))}
