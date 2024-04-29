@@ -135,6 +135,10 @@ export const UserHeaderLable: UserHeaderLabel[] = [
     label: "Questions",
     pathName: "/user/questions",
   },
+  {
+    label: "Logout",
+    pathName: "/",
+  },
 ];
 
 export const DashboardLable = {

@@ -27,7 +27,10 @@ const Header = () => {
                     }}
                   >
                     {value.label === "Logout" ? (
-                      <FaPowerOff className="me-2" onClick={() => logOutButton()} />
+                      <FaPowerOff
+                        className="me-2"
+                        onClick={() => logOutButton()}
+                      />
                     ) : (
                       value.label
                     )}
@@ -43,7 +46,14 @@ const Header = () => {
                       nav(value?.pathName);
                     }}
                   >
-                    {value.label}
+                    {value.label === "Logout" ? (
+                      <FaPowerOff
+                        className="me-2"
+                        onClick={() => logOutButton()}
+                      />
+                    ) : (
+                      value.label
+                    )}
                   </label>
                 </Nav.Item>
               ))}
