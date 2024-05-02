@@ -15,7 +15,7 @@ const Editor = () => {
   const handleSubmit = () =>
     // Handle submitting the code
     //for future use
-    setCode("Test");
+    console.log(code);
 
   return (
     <div>
@@ -30,6 +30,7 @@ const Editor = () => {
         <Compiler
           language={language}
           theme={theme}
+          setCode={setCode}
           value={code}
           onLanguageChange={handleLanguageChange}
           onThemeChange={handleThemeChange}

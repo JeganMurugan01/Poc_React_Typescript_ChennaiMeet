@@ -8,6 +8,7 @@ type CompilerProps = {
   language: string;
   theme: string;
   value: string;
+  setCode?: React.Dispatch<React.SetStateAction<string>>;
   onLanguageChange: (language: string) => void;
   onThemeChange: (theme: string) => void;
   onSubmit: () => void;
@@ -19,6 +20,7 @@ const Compiler = ({
   onLanguageChange,
   onThemeChange,
   onSubmit,
+  setCode
 }: CompilerProps) => {
   const [show, setShow] = useState<boolean>(false);
   const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -36,7 +38,9 @@ const Compiler = ({
   const handleRun = () => {
     setShow(true);
   };
-
+const handleEditorChange=(value: string)=>{
+  setCode(value)
+}
   const editorHeight = `calc(80vh - 90px)`;
 
   return (
@@ -71,6 +75,7 @@ const Compiler = ({
         width="100%"
         language={language || "javascript"}
         value={value}
+        onChange={handleEditorChange}
         theme={theme}
         defaultValue="// Enter your code here"
         className="editor"
