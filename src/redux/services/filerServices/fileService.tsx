@@ -93,6 +93,15 @@ export const fileServiceApi = createApi({
         };
       },      
     }),
+    saveProjectCode: builder.mutation<any, void>({
+      query(body) {        
+        return {
+          url: "project/saveProjectCode",
+          method: "POST",
+          body,
+        };
+      },      
+    }),
     getAllFolder: builder.query<any, void>({
       query: () => {
         return {
@@ -132,6 +141,6 @@ export const {
   useGetQuestionByIdQuery,
   useGetAllFolderQuery,
   useGetSavedCodeQuery,
-  useCreateFolderMutation,
+  useCreateFolderMutation,useSaveProjectCodeMutation,
   useQuestionAssignedByMutation,useGetUserMappedQuestionQuery
 } = fileServiceApi;

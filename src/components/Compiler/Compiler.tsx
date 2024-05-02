@@ -84,7 +84,7 @@ const Compiler = ({
         </button>
       </div>
       <Modal
-        children={<SaveFile />}
+        children={<SaveFile value={value}/>}
         show={show}
         setShow={setShow}
         Title="Save File"
