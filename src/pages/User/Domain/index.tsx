@@ -5,7 +5,7 @@ import {
   useGetAllFilesQuery,
   useGetQuestionByIdQuery,
 } from "../../../redux/services/filerServices/fileService";
-import { codeLevel } from "../../../constants";
+import { DifficultyLevel, codeLevel } from "../../../constants";
 import { useEffect, useState } from "react";
 
 export const Domain = () => {
@@ -57,6 +57,7 @@ export const Domain = () => {
           <div className="row">
             <div className="col-9">
               {data?.data.map((value: any, i: number) => {
+                console.log(value, "value");
                 return (
                   <div className={`card ${i === 0 && "mt-5"} mt-2 ms-3`}>
                     <div className="card-body">
@@ -87,7 +88,32 @@ export const Domain = () => {
                 );
               })}
             </div>
-            <div className="col-3"></div>
+            <div className="col-3">
+              <div className="row ">
+                <div className="col-8 mt-5 ms-3 border-bottom">
+                  <label className="fw-light">DIFFICULTY</label>
+                  {DifficultyLevel &&
+                    DifficultyLevel?.map((value: any, i: number) => {
+                      return (
+                        <>
+                          <div className="mt-2  ">
+                            <input
+                              className="form-check-input"
+                              type="checkbox"
+                              value=""
+                              id="flexCheckChecked"
+                              checked
+                            />{" "}
+                            <label key={i}>{value?.label}</label>
+                            <br />
+                          </div>
+                        </>
+                      );
+                    })}
+                </div>
+                <div className="col-4"></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
