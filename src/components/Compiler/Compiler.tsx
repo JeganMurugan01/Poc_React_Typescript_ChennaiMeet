@@ -12,6 +12,7 @@ type CompilerProps = {
   onLanguageChange: (language: string) => void;
   onThemeChange: (theme: string) => void;
   onSubmit: () => void;
+  fileId:string
 };
 const Compiler = ({
   language,
@@ -19,6 +20,7 @@ const Compiler = ({
   value,
   onLanguageChange,
   onThemeChange,
+  fileId,
   onSubmit,
   setCode
 }: CompilerProps) => {
@@ -42,6 +44,7 @@ const handleEditorChange=(value: string)=>{
   setCode(value)
 }
   const editorHeight = `calc(80vh - 90px)`;
+console.log(fileId);
 
   return (
     <div className="editor-section">
@@ -80,16 +83,16 @@ const handleEditorChange=(value: string)=>{
         defaultValue="// Enter your code here"
         className="editor"
       />
-      <div className="d-flex flex-row-reverse mt-2 ">
-        <button onClick={handleRun} className="btn btn-primary">
-          {LOGIN?.SUBMIT}
-        </button>
-        <button onClick={handleSubmit} className="btn btn-primary">
+      <button onClick={handleSubmit} className="btn btn-success">
           {LOGIN?.RUN}
         </button>
+      <div className="d-flex justify-content-between mt-2 ">
+        <button onClick={handleRun} className="btn btn-primary">
+          Save File
+        </button>        
       </div>
       <Modal
-        children={<SaveFile value={value}/>}
+        children={<SaveFile value={value} fileId={fileId}/>}
         show={show}
         setShow={setShow}
         Title="Save File"
