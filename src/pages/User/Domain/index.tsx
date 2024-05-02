@@ -12,7 +12,6 @@ export const Domain = () => {
   const location = useLocation();
   const nav = useNavigate();
   const [questionId, setQuestionId] = useState("");
-
   const { data } = useGetAllFilesQuery({
     page: 1,
     limit: 50,
@@ -27,7 +26,7 @@ export const Domain = () => {
 
   useEffect(() => {
     if (questionId !== "" && questionById?.status !== "pending") {
-      nav("/user/compiler", { state: questionById?.data?.question });
+      nav("/user/compiler", { state: {question:questionById?.data?.question,fileId:questionId }});
     }
   }, [questionById]);
   return (
@@ -108,7 +107,6 @@ export const Domain = () => {
                 </div>
               )}
             </div>
-            <div className={data?.data?.length ? "col-3" : "d-none"}></div>
           </div>
         </div>
       </div>
