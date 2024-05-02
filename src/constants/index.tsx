@@ -137,13 +137,13 @@ export const UserHeaderLable: UserHeaderLabel[] = [
     pathName: "/user/questions",
   },
   {
+    label: "My Files",
+    pathName: "/user/folders",
+  },
+  {
     label: "Logout",
     pathName: "/",
   },
-  {
-    label:"My Files",
-    pathName:"/user/folders"
-  } 
 ];
 
 export const DashboardLable = {
