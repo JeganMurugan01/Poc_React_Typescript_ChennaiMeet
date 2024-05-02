@@ -56,6 +56,40 @@ export const Logindata: LoginField[] = [
   },
 ];
 
+interface SignupField {
+  id: number;
+  label: string;
+  apiKey: string;
+}
+
+export const SignupData: SignupField[] = [
+  {
+    id: 1,
+    label: "FirstName",
+    apiKey: "firstName",
+  },
+  {
+    id: 2,
+    label: "LastName",
+    apiKey: "lastName",
+  },
+  {
+    id: 3,
+    label: "Email",
+    apiKey: "email",
+  },
+  {
+    id: 4,
+    label: "Password",
+    apiKey: "password",
+  },
+  {
+    id: 5,
+    label: "UserType",
+    apiKey: "userType",
+  },
+];
+
 interface AdminHeaderLabel {
   label: string;
   pathName: string;
@@ -78,6 +112,10 @@ export const AdminHeaderLable: AdminHeaderLabel[] = [
     label: "Permission",
     pathName: "/admin/Permission",
   },
+  {
+    label: "Logout",
+    pathName: "/",
+  },
 ];
 
 interface UserHeaderLabel {
@@ -95,20 +133,26 @@ export const UserHeaderLable: UserHeaderLabel[] = [
     pathName: "/user/compiler",
   },
   {
-    label:"Questions",
-    pathName:"/user/questions"
+    label: "Questions",
+    pathName: "/user/questions",
+  },
+  {
+    label: "Logout",
+    pathName: "/",
   },
   {
     label:"My Files",
     pathName:"/user/folders"
-  }
+  } 
 ];
 
 export const DashboardLable = {
   WELCOME: "Welcome back",
   LOGOUT: "Logout",
 };
-
+export const SignupPageConstant = {
+  SIGNUPPAGEHEADING: "Signup Page",
+};
 export const PermissionLabel = {
   USERPERMISSION: "User Permissions",
 };
