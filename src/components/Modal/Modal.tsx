@@ -7,9 +7,10 @@ interface Ilayout {
   SubmitBtn: string;
   ModalBtn?: string;
   onClick?: (data: any) => void;
-  show?:boolean
-  size?:string
-  setShow?:React.Dispatch<React.SetStateAction<boolean>>
+  show?: boolean;
+  size?: string;
+  btnClassName?:string;
+  setShow?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const Modal = ({
@@ -20,25 +21,26 @@ export const Modal = ({
   onClick,
   size,
   show,
-  setShow
+  setShow,
+  btnClassName,
 }: Ilayout) => {
   const [showModal, setShowModal] = useState(false);
 
   const handleModalToggle = () => {
     setShowModal(!showModal);
-    setShow(false)
+    setShow(false);
   };
 
-  useEffect(()=>{
-    if(show) setShowModal(show)
-  },[show])
+  useEffect(() => {
+    if (show) setShowModal(show);
+  }, [show]);
 
   return (
     <>
       {ModalBtn?.length && (
         <button
           type="button"
-          className="btn bg-212529 text-white"
+          className={`btn bg-212529 text-white ${btnClassName}`}
           onClick={handleModalToggle}
         >
           {ModalBtn}
@@ -69,7 +71,10 @@ export const Modal = ({
                 <button
                   type="button"
                   className="btn btn-primary"
-                  onClick={onClick}
+                  onClick={() => {
+                    onClick();
+                    handleModalToggle();
+                  }}
                 >
                   {SubmitBtn}
                 </button>

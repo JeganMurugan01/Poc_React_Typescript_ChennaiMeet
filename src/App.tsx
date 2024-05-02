@@ -15,6 +15,8 @@ import { UserDashboard } from "./pages/User/Dashboard";
 import { Domain } from "./pages/User/Domain";
 import Questions from "./pages/User/Questions/Questions";
 import "./css/style.css"
+import Folders from "./pages/User/Folders/Folder";
+import File from "./pages/User/Folders/File";
 
 function App() {
   const navigate = useNavigate();
@@ -71,7 +73,7 @@ function App() {
             <Route
               path="/admin/userDetails"
               element={<Layout Child={UserProfile} />}
-            />
+            />            
             <Route path="*" element={<Layout Child={PageNotFound} />} />
           </>
         );
@@ -87,6 +89,14 @@ function App() {
             <Route
               path="/user/questions"
               element={<Layout Child={Questions} />}
+            />
+            <Route
+              path="/user/folders"
+              element={<Layout Child={Folders} />}
+            />
+            <Route
+              path="/user/folders/:filename"
+              element={<Layout Child={File} />}
             />
             <Route path="*" element={<Layout Child={PageNotFound} />} />
           </>

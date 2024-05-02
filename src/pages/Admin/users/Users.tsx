@@ -47,7 +47,7 @@ const Users = () => {
         show={show}
         setShow={setShow}
         size="modal-lg"
-        SubmitBtn={"Assign"}
+        SubmitBtn={"Assign"}        
         Title={"Assign Questions"}
       />
       <h4 className="d-flex justify-content-left mt-3 ms-3">

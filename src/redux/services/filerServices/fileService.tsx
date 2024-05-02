@@ -84,6 +84,36 @@ export const fileServiceApi = createApi({
         };
       },
     }),
+    createFolder: builder.mutation<any, void>({
+      query(body) {        
+        return {
+          url: "project/createFolder",
+          method: "POST",
+          body,
+        };
+      },      
+    }),
+    getAllFolder: builder.query<any, void>({
+      query: () => {
+        return {
+          url: "/project/getAllFolder",
+        };
+      },
+    }),    
+    getSaveChallengeCode: builder.query<any, void>({
+      query: () => {
+        return {
+          url: "/challenge/getSaveChallengeCode",
+        };
+      },
+    }),
+    getSavedCode: builder.query<any,   { projectId?: string }>({
+      query: ({ projectId }) => {
+        return {
+          url: `/project/getSavedCode?projectId=${projectId}`,
+        };
+      },
+    }),
     getFileMetaData: builder.query<any, void>({
       query: () => {
         return {
@@ -100,5 +130,8 @@ export const {
   useFileUploadMutation,
   useGetUserQuestionQuery,
   useGetQuestionByIdQuery,
+  useGetAllFolderQuery,
+  useGetSavedCodeQuery,
+  useCreateFolderMutation,
   useQuestionAssignedByMutation,useGetUserMappedQuestionQuery
 } = fileServiceApi;

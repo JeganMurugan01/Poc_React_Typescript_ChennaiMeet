@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Editor } from "@monaco-editor/react";
 import { Language, LOGIN, themColor } from "../../constants";
 import "./compiler.css";
+import SaveFile from "./SaveFile";
+import { Modal } from "../Modal/Modal";
 type CompilerProps = {
   language: string;
   theme: string;
@@ -9,7 +11,6 @@ type CompilerProps = {
   onLanguageChange: (language: string) => void;
   onThemeChange: (theme: string) => void;
   onSubmit: () => void;
-  File:string
 };
 const Compiler = ({
   language,
@@ -18,8 +19,8 @@ const Compiler = ({
   onLanguageChange,
   onThemeChange,
   onSubmit,
-  File,
 }: CompilerProps) => {
+  const [show, setShow] = useState<boolean>(false);
   const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     onLanguageChange(e.target.value);
   };
@@ -32,61 +33,65 @@ const Compiler = ({
     onSubmit();
   };
 
+  const handleRun = () => {
+    setShow(true);
+  };
+
   const editorHeight = `calc(80vh - 90px)`;
 
   return (
-    <>
-      <div>
-        <div className="compiler-container">
-          <div className="question-section overflow-auto">
-            <h2>Question:</h2>
-            <p>Enter your question here:</p>
-            <p style={{whiteSpace: "pre-line"}}>{File}</p>
-          </div>
-          <div className="editor-section">
-            <div className="controls">
-              <select
-                value={language}
-                onChange={handleLanguageChange}
-                className="form-select"
-              >
-                {Language?.map((value, i) => (
-                  <option value={value?.label} key={i}>
-                    {value?.label}
-                  </option>
-                ))}
-              </select>
-              <select
-                value={theme}
-                onChange={handleThemeChange}
-                className="form-select"
-              >
-                {themColor &&
-                  themColor?.map((value, i) => (
-                    <option value={value?.them} key={i}>
-                      {value?.them}
-                    </option>
-                  ))}
-              </select>
-            </div>
-            <Editor
-              height={editorHeight}
-              width="100%"
-              language={language || "javascript"}
-              value={value}
-              theme={theme}
-              defaultValue="// Enter your code here"
-              className="editor"
-            />
-            <div className="d-flex flex-row-reverse mt-2 ">
-              <button onClick={handleSubmit} className="btn btn-primary">
-                {LOGIN?.RUN}
-              </button>
-            </div>
-          </div>
-        </div>
+    <div className="editor-section">
+      <div className="controls">
+        <select
+          value={language}
+          onChange={handleLanguageChange}
+          className="form-select"
+        >
+          {Language?.map((value, i) => (
+            <option value={value?.label} key={i}>
+              {value?.label}
+            </option>
+          ))}
+        </select>
+        <select
+          value={theme}
+          onChange={handleThemeChange}
+          className="form-select"
+        >
+          {themColor &&
+            themColor?.map((value, i) => (
+              <option value={value?.them} key={i}>
+                {value?.them}
+              </option>
+            ))}
+        </select>
       </div>
-    </>
+      <Editor
+        height={editorHeight}
+        width="100%"
+        language={language || "javascript"}
+        value={value}
+        theme={theme}
+        defaultValue="// Enter your code here"
+        className="editor"
+      />
+      <div className="d-flex flex-row-reverse mt-2 ">
+        <button onClick={handleRun} className="btn btn-primary">
+          {LOGIN?.SUBMIT}
+        </button>
+        <button onClick={handleSubmit} className="btn btn-primary">
+          {LOGIN?.RUN}
+        </button>
+      </div>
+      <Modal
+        children={<SaveFile />}
+        show={show}
+        setShow={setShow}
+        Title="Save File"
+        SubmitBtn={"Submit"}
+        onClick={handleSubmit}
+      />
+    </div>
   );
 };
 export default Compiler;

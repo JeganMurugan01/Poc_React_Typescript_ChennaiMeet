@@ -24,11 +24,11 @@ export const Domain = () => {
     { skip: questionId === "" ? true : false }
   );
 
-  useEffect(()=>{
-    if(questionId !== "" &&questionById?.status!=="pending")
-   { console.log(questionById);
-    nav("/user/compiler",{state:questionById?.data?.question});}
-  },[questionById])
+  useEffect(() => {
+    if (questionId !== "" && questionById?.status !== "pending") {
+      nav("/user/compiler", { state: questionById?.data?.question });
+    }
+  }, [questionById]);
   return (
     <>
       <div style={{ overflowX: "hidden" }}>

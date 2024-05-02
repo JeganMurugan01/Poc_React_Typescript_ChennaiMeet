@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { FaCuttlefish, FaJava } from "react-icons/fa";
 import { SiCplusplus, SiCsharp, SiJavascript } from "react-icons/si";
 import { useNavigate } from "react-router-dom";
@@ -96,6 +97,10 @@ export const UserHeaderLable: UserHeaderLabel[] = [
   {
     label:"Questions",
     pathName:"/user/questions"
+  },
+  {
+    label:"My Files",
+    pathName:"/user/folders"
   }
 ];
 
