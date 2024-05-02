@@ -116,10 +116,11 @@ export const fileServiceApi = createApi({
         };
       },
     }),
-    getSavedCode: builder.query<any,   { projectId?: string }>({
+    getSavedCode: builder.mutation<any,   { projectId?: string }>({
       query: ({ projectId }) => {
         return {
           url: `/project/getSavedCode?projectId=${projectId}`,
+          method:"GET"
         };
       },
     }),
@@ -140,7 +141,7 @@ export const {
   useGetUserQuestionQuery,
   useGetQuestionByIdQuery,
   useGetAllFolderQuery,
-  useGetSavedCodeQuery,
+  useGetSavedCodeMutation,
   useCreateFolderMutation,useSaveProjectCodeMutation,
   useQuestionAssignedByMutation,useGetUserMappedQuestionQuery
 } = fileServiceApi;

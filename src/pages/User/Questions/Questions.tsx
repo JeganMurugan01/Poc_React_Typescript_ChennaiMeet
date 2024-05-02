@@ -4,7 +4,7 @@ import { useGetUserQuestionQuery } from "../../../redux/services/filerServices/f
 
 const Questions = () => {
   const { data } = useGetUserQuestionQuery();
-const navigate=useNavigate();  
+  const navigate = useNavigate();
   return (
     <>
       {data?.data.map((value: any, i: number) => {
@@ -16,13 +16,25 @@ const navigate=useNavigate();
                   <div className="p-2">
                     <h5 className="mt-2  "> {value?.File?.topicName}</h5>
                     <div className="" style={{ fontSize: "12px" }}>
-                    {codeLevel(value?.File?.level)}{" "}
-                    <b>{value?.File?.language}</b>
+                      {codeLevel(value?.File?.level)}{" "}
+                      <b>{value?.File?.language}</b>
                     </div>
                   </div>
                 </div>
                 <div className="col-3">
-                  <button className=" btn btn-success mt-3 w-75 "onClick={()=>navigate("/user/compiler",{state:value?.File?.question})}>Solve</button>
+                  <button
+                    className=" btn btn-success mt-3 w-75 "
+                    onClick={() =>
+                      navigate("/user/compiler", {
+                        state: {
+                          question: value?.File?.question,
+                          fileId: value?.fileId,
+                        },
+                      })
+                    }
+                  >
+                    Solve
+                  </button>
                 </div>
               </div>
             </div>

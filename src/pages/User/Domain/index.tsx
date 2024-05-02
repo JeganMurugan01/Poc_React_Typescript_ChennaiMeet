@@ -5,13 +5,14 @@ import {
   useGetAllFilesQuery,
   useGetQuestionByIdQuery,
 } from "../../../redux/services/filerServices/fileService";
-import { DifficultyLevel, codeLevel } from "../../../constants";
+import { codeLevel } from "../../../constants";
 import { useEffect, useState } from "react";
 
 export const Domain = () => {
   const location = useLocation();
   const nav = useNavigate();
   const [questionId, setQuestionId] = useState("");
+
   const { data } = useGetAllFilesQuery({
     page: 1,
     limit: 50,
@@ -55,25 +56,37 @@ export const Domain = () => {
         </div>
         <div style={{ backgroundColor: "#f7f8fd", height: "100%" }}>
           <div className="row">
-            <div className="col-9">
-              {data?.data.map((value: any, i: number) => {
-                console.log(value, "value");
-                return (
-                  <div className={`card ${i === 0 && "mt-5"} mt-2 ms-3`}>
+            <div
+              className={
+                data?.data?.length
+                  ? "col-9"
+                  : "col-12 d-flex justify-content-center align-items-center"
+              }
+            >
+              {data?.data?.length ? (
+                data?.data.map((value: any, i: number) => (
+                  <div
+                    className={`card ${i === 0 && "mt-5"} mt-2 ms-3`}
+                    key={i}
+                  >
                     <div className="card-body">
                       <div className="row">
-                        <div className="col-9 ">
+                        <div
+                          className={data?.data?.length ? "col-9" : "col-12"}
+                        >
                           <div className="p-2">
                             <h5 className="mt-2">{value?.topicName}</h5>
-                            <div className="" style={{ fontSize: "12px" }}>
+                            <div style={{ fontSize: "12px" }}>
                               {codeLevel(value?.level)}{" "}
                               <b>{location?.state?.id}</b>
                             </div>
                           </div>
                         </div>
-                        <div className="col-3">
+                        <div
+                          className={data?.data?.length ? "col-3" : "d-none"}
+                        >
                           <button
-                            className=" btn btn-success mt-3 w-75 "
+                            className="btn btn-success mt-3 w-75"
                             onClick={() => {
                               setQuestionId(value?.id);
                               questionById?.refetch();
@@ -85,35 +98,17 @@ export const Domain = () => {
                       </div>
                     </div>
                   </div>
-                );
-              })}
-            </div>
-            <div className="col-3">
-              <div className="row ">
-                <div className="col-8 mt-5 ms-3 border-bottom">
-                  <label className="fw-light">DIFFICULTY</label>
-                  {DifficultyLevel &&
-                    DifficultyLevel?.map((value: any, i: number) => {
-                      return (
-                        <>
-                          <div className="mt-2  ">
-                            <input
-                              className="form-check-input"
-                              type="checkbox"
-                              value=""
-                              id="flexCheckChecked"
-                              checked
-                            />{" "}
-                            <label key={i}>{value?.label}</label>
-                            <br />
-                          </div>
-                        </>
-                      );
-                    })}
+                ))
+              ) : (
+                <div
+                  className="d-flex justify-content-center align-items-center"
+                  style={{ minHeight: "50vh" }}
+                >
+                  <div>No questions available</div>
                 </div>
-                <div className="col-4"></div>
-              </div>
+              )}
             </div>
+            <div className={data?.data?.length ? "col-3" : "d-none"}></div>
           </div>
         </div>
       </div>
