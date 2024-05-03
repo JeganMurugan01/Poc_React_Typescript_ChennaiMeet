@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
 import { Editor } from "@monaco-editor/react";
 import { Language, LOGIN, themColor } from "../../constants";
@@ -84,7 +85,7 @@ const Compiler = ({
       />
       <div className="d-flex justify-content-between mt-2">
         <button onClick={handleRun} className="btn btn-primary">
-          {fileId?"Save":"Update"} File
+          {!fileId?"Save":"Update"} File
         </button>
         <button onClick={handleSubmit} className="btn btn-success">
           {LOGIN?.RUN}
