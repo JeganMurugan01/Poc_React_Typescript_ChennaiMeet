@@ -7,7 +7,9 @@ const Editor = () => {
   const [language, setLanguage] = useState<string>("javascript");
   const [code, setCode] = useState<string>("");
   const [theme, setTheme] = useState<string>("light");
-  const [fileId,setFileId]=useState<string>("")
+  const [file,setFile]=useState<string>({
+    fileId:"",question:""
+  })
   const handleLanguageChange = (selectedLanguage: string) =>
     setLanguage(selectedLanguage);
 
@@ -20,17 +22,17 @@ const Editor = () => {
     console.log(code);
 
 useEffect(()=>{
-  setFileId(location?.state?.fileId?location?.state.fileId:"")
+  setFile(location?.state)
   setCode(location?.state?.code)
 },[])  
   return (
     <div>
       <div className="compiler-container">
-        {fileId?<div className="question-section overflow-auto">
+        {file?.fileId?<div className="question-section overflow-auto">
           <h2>Question:</h2>
           <p>Enter your question here:</p>
           <p style={{ whiteSpace: "pre-line" }}>
-            {location?.state?.question ? location?.state?.question : ""}
+            {file?.question ? file?.question : ""}
           </p>
         </div>:<></>}
         <Compiler
@@ -38,7 +40,7 @@ useEffect(()=>{
           theme={theme}
           setCode={setCode}
           value={code}
-          fileId={fileId}
+          fileId={file?.fileId}
           onLanguageChange={handleLanguageChange}
           onThemeChange={handleThemeChange}
           onSubmit={handleSubmit}
