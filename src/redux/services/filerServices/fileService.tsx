@@ -28,30 +28,20 @@ export const fileServiceApi = createApi({
         };
       },
     }),
-    getUserMappedQuestion:builder.query<
-    any,
-    { userId?: string | "" }
-  >({
-    query: ({ userId }) => {
-      return {
-        url: `file/getUserMappedQuestion/?userId=${
-          userId
-        }`,
-      };
-    },
-  }),
-  getQuestionById:builder.query<
-    any,
-    { questionId?: string | "" }
-  >({
-    query: ({ questionId }) => {
-      return {
-        url: `file/getQuestionById/?questionId=${
-          questionId
-        }`,
-      };
-    },
-  }),
+    getUserMappedQuestion: builder.query<any, { userId?: string | "" }>({
+      query: ({ userId }) => {
+        return {
+          url: `file/getUserMappedQuestion/?userId=${userId}`,
+        };
+      },
+    }),
+    getQuestionById: builder.query<any, { questionId?: string | "" }>({
+      query: ({ questionId }) => {
+        return {
+          url: `file/getQuestionById/?questionId=${questionId}`,
+        };
+      },
+    }),
     fileUpload: builder.mutation<any, void>({
       query(body) {
         return {
@@ -62,7 +52,7 @@ export const fileServiceApi = createApi({
       },
     }),
     questionAssignedBy: builder.mutation<any, void>({
-      query(body) {        
+      query(body) {
         return {
           url: "file/questionAssignedBy",
           method: "POST",
@@ -85,22 +75,25 @@ export const fileServiceApi = createApi({
       },
     }),
     createFolder: builder.mutation<any, void>({
-      query(body) {        
+      query(body) {
         return {
           url: "project/createFolder",
           method: "POST",
           body,
         };
-      },      
+      },
+      invalidatesTags: ["folder"],
     }),
+
     saveProjectCode: builder.mutation<any, void>({
-      query(body) {        
+      query(body) {
         return {
           url: "project/saveProjectCode",
           method: "POST",
           body,
         };
-      },      
+      },
+      invalidatesTags: ["folder"],
     }),
     getAllFolder: builder.query<any, void>({
       query: () => {
@@ -108,7 +101,8 @@ export const fileServiceApi = createApi({
           url: "/project/getAllFolder",
         };
       },
-    }),    
+      providesTags: ["folder"],
+    }),
     getSaveChallengeCode: builder.query<any, void>({
       query: () => {
         return {
@@ -116,11 +110,11 @@ export const fileServiceApi = createApi({
         };
       },
     }),
-    getSavedCode: builder.mutation<any,   { projectId?: string }>({
+    getSavedCode: builder.mutation<any, { projectId?: string }>({
       query: ({ projectId }) => {
         return {
           url: `/project/getSavedCode?projectId=${projectId}`,
-          method:"GET"
+          method: "GET",
         };
       },
     }),
@@ -142,6 +136,8 @@ export const {
   useGetQuestionByIdQuery,
   useGetAllFolderQuery,
   useGetSavedCodeMutation,
-  useCreateFolderMutation,useSaveProjectCodeMutation,
-  useQuestionAssignedByMutation,useGetUserMappedQuestionQuery
+  useCreateFolderMutation,
+  useSaveProjectCodeMutation,
+  useQuestionAssignedByMutation,
+  useGetUserMappedQuestionQuery,
 } = fileServiceApi;
