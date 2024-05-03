@@ -26,13 +26,13 @@ useEffect(()=>{
   return (
     <div>
       <div className="compiler-container">
-        <div className="question-section overflow-auto">
+        {fileId?<div className="question-section overflow-auto">
           <h2>Question:</h2>
           <p>Enter your question here:</p>
           <p style={{ whiteSpace: "pre-line" }}>
             {location?.state?.question ? location?.state?.question : ""}
           </p>
-        </div>
+        </div>:<></>}
         <Compiler
           language={language}
           theme={theme}

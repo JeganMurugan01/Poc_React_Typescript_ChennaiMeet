@@ -44,7 +44,6 @@ const Compiler = ({
     setCode(value);
   };
   const editorHeight = `calc(80vh - 90px)`;
-  console.log(fileId);
 
   return (
     <div className="editor-section">
