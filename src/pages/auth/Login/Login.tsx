@@ -3,6 +3,7 @@ import { LOGIN, Logindata } from "../../../constants";
 import { useLoginMutation } from "../../../redux/services/authServices/authService";
 import { useEffect } from "react";
 import Form from "../../../components/Form/Form";
+import "../../../css/style.css";
 
 const LoginPage = () => {
   const [loginPayload, loginData] = useLoginMutation();
@@ -35,6 +36,20 @@ const LoginPage = () => {
             <div className="mt-5">
               <h5 className="mb-3">{LOGIN?.LOGINPAGEHEADING}</h5>
               <Form data={Logindata} onSubmit={handleFormSubmit} />
+            </div>
+            <div className="row">
+              <div className="col-5"></div>
+              <small className="col-7 ps-0 pe-0 mt-2  ">
+                Don't have an account?
+                <label
+                  className="text-primary pointer"
+                  onClick={() => {
+                    nav("/signup");
+                  }}
+                >
+                  Register
+                </label>
+              </small>
             </div>
           </div>
         </div>
