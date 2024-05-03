@@ -37,7 +37,6 @@ const File = ({ folder, setFolder, code ,fileId}: CompilerProps) => {
       navigate("/user/compiler", { state: {question:getQuestionById?.data?.question,fileId:questionId ,code:data?.data?.code}});
     }
   }, [getQuestionById]);
-console.log(data);
 
   return (
     <div className="container">
@@ -56,7 +55,7 @@ console.log(data);
             if(location.pathname.includes("user/compiler"))
               navigate("/user/folders")
           }}
-          btnClassName="float-right"
+          btnClassName={`${location?.pathname?.includes("user/folders")?"d-none":"d-block"} float-right`}
           children={
             <CreateFile createFile={createFile} setCreateFile={setCreateFile} />
           }
