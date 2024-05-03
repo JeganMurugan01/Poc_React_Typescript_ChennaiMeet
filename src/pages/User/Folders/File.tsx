@@ -53,6 +53,8 @@ console.log(data);
               code: code,
               fileId:fileId
             });
+            if(location.pathname.includes("user/compiler"))
+              navigate("/user/folders")
           }}
           btnClassName="float-right"
           children={

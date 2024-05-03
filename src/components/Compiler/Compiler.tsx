@@ -84,7 +84,7 @@ const Compiler = ({
       />
       <div className="d-flex justify-content-between mt-2">
         <button onClick={handleRun} className="btn btn-primary">
-          Save File
+          {fileId?"Save":"Update"} File
         </button>
         <button onClick={handleSubmit} className="btn btn-success">
           {LOGIN?.RUN}
