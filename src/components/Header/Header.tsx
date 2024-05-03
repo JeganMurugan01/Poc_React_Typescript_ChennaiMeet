@@ -6,10 +6,7 @@ import { FaPowerOff } from "react-icons/fa";
 
 const Header = () => {
   const nav = useNavigate();
-  const logOutButton = () => {
-    localStorage.clear();
-    nav("/");
-  };
+
   return (
     <div>
       <Navbar bg="dark" variant="dark" expand="lg">
@@ -29,7 +26,10 @@ const Header = () => {
                     {value.label === "Logout" ? (
                       <FaPowerOff
                         className="me-2"
-                        onClick={() => logOutButton()}
+                        onClick={() => {
+                          nav("/");
+                          localStorage.clear();
+                        }}
                       />
                     ) : (
                       value.label
@@ -49,7 +49,10 @@ const Header = () => {
                     {value.label === "Logout" ? (
                       <FaPowerOff
                         className="me-2"
-                        onClick={() => logOutButton()}
+                        onClick={() => {
+                          nav("/");
+                          localStorage.clear();
+                        }}
                       />
                     ) : (
                       value.label
