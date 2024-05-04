@@ -34,7 +34,7 @@ const Questions = () => {
                       })
                     }
                   >
-                    Solve
+                    {value?.status === "Pending" ? "Open" : value?.status}
                   </button>
                 </div>
               </div>

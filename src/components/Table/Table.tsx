@@ -10,10 +10,8 @@ import {
 } from "ag-grid-community";
 import "ag-grid-charts-enterprise";
 
-
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const Table = ({ rowData, colDefs, onCellClicked,onGridReady }: any) => {
+const Table = ({ rowData, colDefs, onCellClicked, onGridReady }: any) => {
   const containerStyle = useMemo(() => ({ width: "100%", height: "100%" }), []);
   const gridStyle = useMemo(() => ({ height: "100%", width: "100%" }), []);
   console.log(rowData, colDefs, "rowData, colDefs");
@@ -31,8 +29,9 @@ const Table = ({ rowData, colDefs, onCellClicked,onGridReady }: any) => {
       filter: true,
     };
   }, []);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
- 
+
+  const paginationPageSize = 5;
+  const paginationPageSizeSelector = [5, 10, 20, 50, 100];
   return (
     <div style={containerStyle}>
       <div style={gridStyle} className={"ag-theme-quartz-dark"}>
@@ -46,6 +45,8 @@ const Table = ({ rowData, colDefs, onCellClicked,onGridReady }: any) => {
           onCellClicked={onCellClicked}
           pagination={true}
           onGridReady={onGridReady}
+          paginationPageSize={paginationPageSize}
+          paginationPageSizeSelector={paginationPageSizeSelector}
         />
       </div>
     </div>
